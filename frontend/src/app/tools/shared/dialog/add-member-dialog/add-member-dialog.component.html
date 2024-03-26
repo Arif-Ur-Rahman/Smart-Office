@@ -1,0 +1,43 @@
+<div>
+    <h1 mat-dialog-title>Add Member</h1>
+    <form class="example-form" [formGroup]="addMemberForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Select Member</mat-label>
+                <input matInput formControlName="member_id" ngModel placeholder="Enter technologies here" />
+                <!-- <mat-select formControlName="member_id" ngModel>
+                    <mat-option *ngFor="let employee of employees" [value]="employee._id">
+                    {{employee.name}}
+                    </mat-option>
+                </mat-select> -->
+
+                <mat-error *ngIf="addMemberForm.get('member_id').errors?.['required']">
+                    * Member is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field  class="example-full-width" appearance="fill">
+                <mat-label>Select Role</mat-label>
+                <input matInput formControlName="role_id" ngModel placeholder="Enter member role here" />
+                <!-- <mat-select formControlName="role_id" multiple ngModel>
+                    <mat-option *ngFor="let role of roles" [value]="role._id">{{role.title}}</mat-option>
+                </mat-select> -->
+                <mat-error *ngIf="addMemberForm.get('role_id').errors?.['required']">
+                    * Role is required
+                </mat-error>
+            </mat-form-field>
+        
+        </mat-dialog-content>
+
+        <div *ngIf="check_member_flag" class="text-danger">* This members is already exist in this project.</div>
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button cdkFocusInitial (click) ="addMember()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+
+
+
+

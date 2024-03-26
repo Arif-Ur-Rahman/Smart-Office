@@ -1,0 +1,41 @@
+<div class="view_dialog">
+    <div class="dialog-Header">
+        <div class="header-left">
+            <h2>Task Details  </h2>
+        </div>
+
+        <div class="dialog-status"> State :  {{task.state}}  </div>
+    </div>
+    
+    <mat-dialog-content class="mat-typography">
+        <div class="dialog-status m-3"> Title : {{task.title}} </div>
+        <div class="dialog-status m-3"> 
+            Start Date :  {{pipe.transform(task.start_date) }} 
+         </div>
+        <div class="dialog-status m-3"> End Date :  {{pipe.transform(task.end_date) }}  </div>
+        <div class="dialog-status m-3"> Created By :  {{ task.assigned_by.name }}   </div>
+        <div class="dialog-status m-3"> Summary : {{task.description}}  </div>
+
+        <h3> Members : </h3>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let member of task.assigned_to">
+               
+                    {{ member.employee.name }} - {{member.role}}
+
+                <mat-icon class="text-danger" (click) = "deleteTaskMember()">delete</mat-icon>
+                
+            </li>
+        </ul>
+    </mat-dialog-content>
+
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial> Close </button>
+    </mat-dialog-actions>
+
+</div>
+
+
+
+

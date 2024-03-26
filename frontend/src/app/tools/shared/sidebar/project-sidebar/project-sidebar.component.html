@@ -1,0 +1,35 @@
+<span>
+ 
+  
+  <mat-list-item routerLink="project/my-projects" routerLinkActive="router-link-active">
+    <mat-icon mat-list-icon matTooltip="My Projects" matTooltipPosition="after">work</mat-icon>
+    <span *ngIf="show_sidebar">My Projects</span>
+  </mat-list-item>
+  
+  <mat-list-item routerLink="project/all-projects" routerLinkActive="router-link-active">
+    <mat-icon mat-list-icon matTooltip="All Projects" matTooltipPosition="after">business</mat-icon>
+    <span *ngIf="show_sidebar">All Projects</span>
+  </mat-list-item>
+
+  <mat-list-item routerLink="project/my-project-task" routerLinkActive="router-link-active">
+    <mat-icon mat-list-icon matTooltip="My Project Task" matTooltipPosition="after">assignment</mat-icon>
+    <span *ngIf="show_sidebar">My Project Task</span>
+  </mat-list-item>
+
+  <mat-list-item routerLink="project/my-task" routerLinkActive="router-link-active">
+    <mat-icon mat-list-icon matTooltip="My Task" matTooltipPosition="after">task</mat-icon>
+    <span *ngIf="show_sidebar">My Task</span>
+  </mat-list-item>
+  
+  
+  <mat-list-item *ngIf="admin" routerLink="project/settings" routerLinkActive="router-link-active">
+    <mat-icon mat-list-icon class="" matTooltip="Schedule"  matTooltipPosition="after">settings</mat-icon>
+    <span *ngIf="show_sidebar">Settings</span>
+  </mat-list-item>
+</span>
+
+
+
+
+
+        

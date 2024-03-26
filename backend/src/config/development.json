@@ -1,0 +1,29 @@
+{
+    "server": {
+        "server": "http://localhost",
+        "port": 3002
+    },
+    "database": {
+        "username": "SmartOfficeUsers",
+        "password": "6hX4dey6nm7ReWEn",
+        "database_name": "smartOfficeDB"
+    },
+    "jwt": {
+        "jwt_secret": "sdsqjfgqwhjfryqwgfyygsidcv23yvrgewhbrgbi3uw"
+    },
+    "cors": {
+        "origin": "*",
+        "credentials": true,
+        "methods": [
+            "GET",
+            "POST",
+            "DELETE",
+            "UPDATE",
+            "PUT",
+            "PATCH"
+        ]
+    },
+    "urls": {
+        "baseURL": "http://localhost:3002/"
+    }
+}

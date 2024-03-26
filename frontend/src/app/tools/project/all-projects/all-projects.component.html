@@ -1,0 +1,157 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center"> All Projects </h2>
+        </div>
+    </div>
+
+    <h2 class="text-danger text-center" *ngIf="empty_project">You are not assigned in any project...</h2>
+
+    <div class="container-fluid" *ngIf="!empty_project">
+        <mat-form-field appearance="fill">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Smart office" #input>
+        </mat-form-field>
+
+        <div class="row table-responsive" class="row table-container" style="height: 350px; overflow: auto;">
+            <!-- <table mat-table [dataSource]="dataSource" matSort matSortDisableClear matSortDirection="desc" matSortActive="title"> -->
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="id" class="col-md-1 col-xl-1 col-xxl-1">
+                    <th style="display: none;" mat-header-cell *matHeaderCellDef class="mat-header-cell"> Id </th>
+                    <td style="display: none;" mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{element._id}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="serial" class="col-md-1 col-xl-1 col-xxl-1">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Serial </th>
+                    <td mat-cell *matCellDef="let element; index as i" class="mat-data-cell" #myHeaderCell> 
+                        {{ i + 1 + (paginator.pageIndex * paginator.pageSize) }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="title" class="col-md-1 col-xl-1 col-xxl-1">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Title </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{ element.title ? element.title : 'None' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="version" class="col-md-2 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell "> Version </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{ element.version_number ? element.version_number : 'None' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="deadline" class="col-md-2 col-xl-1 col-xxl-1">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell "> Deadline </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell"> {{element.end_date | date:'short'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="priority" class="col-md-3 col-xl-1 col-xxl-1">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell "> Priority </th>
+                    <td *matCellDef="let element" class="mat-data-cell">
+                        <div *ngIf="element.priority; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+                            <span [ngStyle]="{
+                                'display': 'inline-block',
+                                'border-radius': '20px', 
+                                'padding': '5px 15px', 
+                                'color':'white', 
+                                'font-size': '12px',
+                                'background':
+                                element.priority === 'High' ? '#AB47BC' :
+                                element.priority === 'Medium' ? '#EC407A' :
+                                element.priority === 'Low' ? '#EF5350' : '#880E4F'
+                            }">
+                                {{ element.priority}}
+                            </span>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <span [ngStyle]="{
+                                'border-radius': '20px',
+                                'padding': '10px',
+                                'color':'white',
+                                'background': '#EDE7F6'
+                            }">
+                                None
+                            </span>
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status" class="col-md-3 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Status </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{ element.status ? element.status : 'None' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action" class="col-md-4 col-xl-3 col-xxl-3">
+                    <th *matHeaderCellDef class="mat-header-cell"> Actions </th>
+                    <td *matCellDef="let element; index as i" class="mat-data-cell">
+                        <div class="more-button">
+                            <button mat-icon-button  [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button type="submit" mat-menu-item (click)="openAddMemberDialog(element._id, i)">
+                                <span>
+                                    Add Member
+                                </span>
+                            </button>
+                            <button type="submit" mat-menu-item (click)="openEditDialog(element._id, i)">
+                                <span>
+                                    Edit Info
+                                </span>
+                            </button>
+                            <button type="submit" mat-menu-item (click)="openDeleteDialog(element._id, i)">
+                                <span>
+                                    Delete Project
+                                </span>
+                            </button>
+                            <button type="submit" mat-menu-item (click)="openViewDialog(element._id, i)">
+                                <span>
+                                    View Details
+                                </span>
+                            </button>
+                            <hr />
+                            <button type="submit" mat-menu-item [routerLink]="element._id ? '/tools/project/board/' + element._id : '#'">
+                                Show Tasks
+                            </button>
+                            <a mat-menu-item *ngIf="element.git_link" [href]="element.git_link">
+                                Github URL
+                            </a>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <mat-paginator #paginator
+        showFirstLastButtons
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        [pageIndex]="currentPageIndex"
+        (page)="pageEvent = $event"></mat-paginator>
+    </div>
+</div>
+
+<footer class="footer-container">
+    <span class="footer-text">Smart Office &copy; 2023</span>
+</footer>
+
+
+<div class="example-button-row">
+    <div class="example-flex-container">
+        <div class="example-button-container">
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="createProjectDialogOpen()">
+                <mat-icon matTooltip="Create new project">add</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

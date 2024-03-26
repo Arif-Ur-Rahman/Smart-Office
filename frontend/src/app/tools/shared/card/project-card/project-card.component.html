@@ -1,0 +1,253 @@
+<span *ngIf="! myProject">
+    <app-fab-button *ngIf="admin" (click)="createProjectDialogOpen()"></app-fab-button>
+</span>
+
+
+
+<div class="container-fluid" *ngIf="!language_selector">
+    <div class="row">
+        <h2 class="text-danger text-center" *ngIf="empty_project">You are not assign in any project...</h2>
+        <div class="col-sm-12 col-md-12 col-lg-6" *ngFor="let project of projects; index as i">
+            <mat-card class="mb-2">
+                <mat-card-header>
+                    <div mat-card-avatar>
+                        <img class="avatar" alt="avatar" src="https://picsum.photos/200/300">
+                    </div>
+                    <mat-card-title> {{project.title}} </mat-card-title>
+
+                    <mat-card-subtitle>
+                        <h5>Version: {{project.current_version}}  </h5>
+                    </mat-card-subtitle>
+
+                    <div class="status">
+                        <div *ngIf="project.current_status; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock>
+                            <span [ngStyle]="{
+                                'border-radius': '2px', 
+                                'padding': '5px', 
+                                'color':'white', 
+                                'background':
+                                project.current_status.title === 'Cancel' ? 'red' :
+                                project.current_status.title === 'Complete' ? 'green' :
+                                project.current_status.title === 'Running' ? 'tomato' :
+                                project.current_status.title === 'On Hold' ? 'grey' : 'black'
+                            }">
+                                {{ project.current_status.title}}
+                            </span>
+                        </ng-template>
+                        <ng-template #elseBlock>
+                            <span [ngStyle]="{
+                                'border-radius': '2px',
+                                'padding': '5px',
+                                'color':'white',
+                                'background': 'grey'
+                            }">
+                                No Status
+                            </span>
+                        </ng-template>
+                    </div>
+
+                    <div class="more-button" *ngIf="admin">
+                        <button mat-icon-button  [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                    </div>
+    
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item (click)="openEditDialog(project._id, i)">
+                            <mat-icon style="color: blue;">edit</mat-icon>
+                            <span>Edit</span>
+                        </button>
+                        <button mat-menu-item (click)="openDeleteDialog(project._id, i)">
+                        <mat-icon style="color: red;" >delete</mat-icon>
+                        <span>Delete</span>
+                        </button>
+    
+                        <button mat-menu-item (click)="openAddMemberDialog(project._id,i)">
+                            <mat-icon style="color: green;">add</mat-icon>
+                            <span>Add Member</span>
+                        </button>
+                    </mat-menu>
+
+                </mat-card-header>
+    
+                <mat-card-content>
+                    <div class="project-details">
+                        <p style="text-align: justify;">{{project.description}}</p>
+                    </div>
+    
+                    <div class="member-container">
+                        <div class="member-list">
+                            <div *ngFor="let member of project.assign_members" mat-card-avatar >
+                                <ng-template [ngIf]="member.employee" [ngIfElse]="loading">
+                                    <img alt="user_image" class="avatar" src="../../../../../assets/user.png" matTooltip="{{member.employee.name}} san" matTooltipPosition="above"/>
+                                </ng-template>
+
+                                <ng-template #loading>
+                                    <!-- <div>Loading...</div> -->
+                                </ng-template>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                
+                <mat-card-actions>
+                    <!-- <button mat-icon-button  matTooltip="Grand Chart" matTooltipPosition="below">
+                        <mat-icon>card_membership</mat-icon>
+                    </button> -->
+                
+    
+                    <a mat-icon-button href={{project.schedule_link}} matTooltip="Schedule" matTooltipPosition="below" target="_blank">
+                        <mat-icon>schedule</mat-icon>
+                    </a>
+                    
+                    <button *ngIf="myProject == 1" mat-icon-button routerLink='/tools/project/single-board-view/{{project._id}}' matTooltip="Board" matTooltipPosition="below">
+                        <mat-icon>developer_board</mat-icon>
+                    </button>
+    
+                    <button mat-icon-button matTooltip="Github" matTooltipPosition="below">
+                    <a href={{project.git_link}} target="_blank">
+                        <img
+                        src="https://img.icons8.com/material-outlined/24/000000/github.png"
+                        />
+                    </a>
+                    </button>
+    
+                    <button mat-icon-button matTooltip="Details" matTooltipPosition="below" (click)="openViewDialog(project._id, i)">
+                    <mat-icon>details</mat-icon>
+                    </button>
+    
+                    <!-- <button mat-icon-button matTooltip="Road Map" matTooltipPosition="below">
+                        <mat-icon>event_seat</mat-icon>
+                    </button> -->
+    
+                </mat-card-actions>
+    
+                <mat-card-footer>
+                    <mat-progress-bar [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
+                    </mat-progress-bar>
+                </mat-card-footer>
+           
+            </mat-card>
+        </div>
+            
+        
+        
+    </div>
+</div>
+
+
+<div class="container-fluid" *ngIf="language_selector">
+    <div class="row">
+
+        <h2 class="text-danger text-center" *ngIf="empty_project">あなたはどのプロジェクトにも割り当てられていません</h2>
+
+        <div class="col-sm-12 col-md-12 col-lg-6" *ngFor="let project of projects; index as i">
+            <mat-card class="mb-2">
+               
+                <mat-card-header>
+                    <div mat-card-avatar>
+                        <img class="avatar" src="https://picsum.photos/200/300">
+                    </div>
+                    <mat-card-title> 題名 : {{project.title}} </mat-card-title>
+
+                    <mat-card-subtitle>
+                        <h5> バージョン : {{project.current_version}}  </h5>
+                    </mat-card-subtitle>
+
+                    <div class="status">
+                        <div *ngIf="project.current_status; then thenBlock else elseBlock"></div>
+                        <ng-template #thenBlock> 状態 : {{project.current_status.title}} </ng-template>
+                        <ng-template #elseBlock> 状態 : Not found</ng-template>
+                    </div>
+
+                    <div class="more-button" *ngIf="admin">
+                        <button mat-icon-button  [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                    </div>
+    
+                    <mat-menu #menu="matMenu" xPosition="before">
+                        <button mat-menu-item (click)="openEditDialog(project._id, i)">
+                            <mat-icon style="color: blue;">edit</mat-icon>
+                            <span>編集</span>
+                        </button>
+                        <button mat-menu-item (click)="openDeleteDialog(project._id, i)">
+                        <mat-icon style="color: red;" >delete</mat-icon>
+                        <span>消去</span>
+                        </button>
+    
+                        <button mat-menu-item (click)="openAddMemberDialog(project._id,i)">
+                            <mat-icon style="color: green;">add</mat-icon>
+                            <span> メンバーを追加 </span>
+                        </button>
+                    </mat-menu>
+
+                </mat-card-header>
+    
+                <mat-card-content>
+                    <div class="project-details">
+                        <p style="text-align: justify;">{{project.description}}</p>
+                    </div>
+    
+                    <div class="member-container">
+                        <h3> メンバー :</h3>
+                        <div class="member-list">
+                            <div *ngFor="let member of project.assign_members" mat-card-avatar >
+                                <ng-template [ngIf]="member.employee" [ngIfElse]="loading">
+                                    <img class="avatar" src="../../../../../assets/user.png" matTooltip="{{member.employee.name}} san" matTooltipPosition="above"/>
+                                </ng-template>
+
+                                <ng-template #loading>
+                                    <!-- <div>Loading...</div> -->
+                                </ng-template>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+                
+                <mat-card-actions>
+                    <button mat-icon-button  matTooltip="ガントチャート" matTooltipPosition="below">
+                        <mat-icon>card_membership</mat-icon>
+                    </button>
+                
+    
+                    <a mat-icon-button href={{project.schedule_link}} matTooltip="スケジュール" matTooltipPosition="below" target="_blank">
+                        <mat-icon>schedule</mat-icon>
+                    </a>
+                    
+                    <button *ngIf="myProject == 1" mat-icon-button routerLink='/tools/project/single-board-view/{{project._id}}' matTooltip="ボード" matTooltipPosition="below">
+                        <mat-icon>developer_board</mat-icon>
+                    </button>
+    
+                    <button mat-icon-button matTooltip="Github リンク" matTooltipPosition="below">
+                    <a href={{project.git_link}} target="_blank">
+                        <img
+                        src="https://img.icons8.com/material-outlined/24/000000/github.png"
+                        />
+                    </a>
+                    </button>
+    
+                    <button mat-icon-button matTooltip="詳細を見る" matTooltipPosition="below" (click)="openViewDialog(project._id, i)">
+                    <mat-icon>details</mat-icon>
+                    </button>
+    
+                    <!-- <button mat-icon-button matTooltip="Road Map" matTooltipPosition="below">
+                        <mat-icon>event_seat</mat-icon>
+                    </button> -->
+    
+                </mat-card-actions>
+    
+                <mat-card-footer>
+                    <mat-progress-bar [color]="color" [mode]="mode" [value]="value" [bufferValue]="bufferValue">
+                    </mat-progress-bar>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+            
+        
+        
+    </div>
+</div>

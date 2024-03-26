@@ -1,0 +1,96 @@
+<span *ngIf="language_selector">
+   
+
+    <mat-list-item
+      routerLink="employee/all-employee"
+      routerLinkActive="router-link-active"
+    >
+      <mat-icon
+        mat-list-icon
+        class=""
+        matTooltip="Employees"
+        matTooltipPosition="after"
+        >people</mat-icon
+      >
+      <span *ngIf="show_sidebar">従業員</span>
+    </mat-list-item>
+
+    <mat-list-item
+      routerLink="employee/my-profile"
+      routerLinkActive="router-link-active"
+    >
+      <mat-icon
+        mat-list-icon
+        class=""
+        matTooltip="My Profle"
+        matTooltipPosition="after"
+        >person</mat-icon
+      >
+      <span *ngIf="show_sidebar">私のプロフィール</span>
+
+
+
+
+    </mat-list-item>
+
+    <mat-list-item *ngIf="admin"
+      routerLink="employee/settings"
+      routerLinkActive="router-link-active"
+    >
+      <mat-icon
+        mat-list-icon
+        class=""
+        matTooltip="My Profle"
+        matTooltipPosition="after"
+        >settings</mat-icon
+      >
+      <span *ngIf="show_sidebar">設定</span>
+    </mat-list-item>
+</span>
+
+
+<span *ngIf="! language_selector">
+  
+  
+  <mat-list-item
+    routerLink="employee/all-employee"
+    routerLinkActive="router-link-active"
+  >
+    <mat-icon
+      mat-list-icon
+      class=""
+      matTooltip="Employees"
+      matTooltipPosition="after"
+      >people</mat-icon
+    >
+    <span *ngIf="show_sidebar">Employees</span>
+  </mat-list-item>
+  
+  <mat-list-item
+    routerLink="employee/my-profile"
+    routerLinkActive="router-link-active"
+  >
+    <mat-icon
+      mat-list-icon
+      class=""
+      matTooltip="My Profle"
+      matTooltipPosition="after"
+      >person</mat-icon
+    >
+    <span *ngIf="show_sidebar">My Profile</span>    
+  </mat-list-item>
+
+  <mat-list-item *ngIf="admin"
+    routerLink="employee/settings"
+    routerLinkActive="router-link-active"
+  >
+    <mat-icon
+      mat-list-icon
+      class=""
+      matTooltip="My Profle"
+      matTooltipPosition="after"
+      >settings</mat-icon
+    >
+    <span *ngIf="show_sidebar">Settings</span>
+  </mat-list-item>
+</span>

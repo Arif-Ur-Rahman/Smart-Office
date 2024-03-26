@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Project Schedule</h2>
+    <div mat-dialog-content>
+        <h2 class="text-danger text-center" *ngIf="empty_project">No project found under this user...</h2>
+        <div class="table-container" *ngIf="!empty_project">
+            <table mat-table [dataSource]="projects">
+                <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Projects</th>
+                <td mat-cell *matCellDef="let project">{{ project.title }}</td>
+                </ng-container>
+            
+                <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let project">
+                    <button mat-button color="primary" (click)="viewDetails(project._id)">View Details</button>
+                </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="['title', 'action']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['title', 'action']"></tr>
+            </table>
+        </div>
+        <!-- <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Select Project</mat-label>
+            <mat-select placeholder="Select Project" (selectionChange)="onProjectChange($event)">
+                <mat-option *ngFor="let project of projects" [value]="project._id">{{ project.title }}</mat-option>
+            </mat-select>
+        </mat-form-field> -->
+    </div>
+    <div mat-dialog-actions align="end">
+        <button type="button" mat-button (click)="onCancelClick()">Cancel</button>
+        <!-- <button type="button" mat-button color="primary" [disabled]="!selectedProject" (click)="onSubmitClick()">Submit</button> -->
+    </div>

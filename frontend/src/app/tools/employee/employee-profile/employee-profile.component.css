@@ -1,0 +1,101 @@
+.header {
+    background-color: rgb(186, 204, 220);
+    padding-left: 20px;
+    font-weight: 500;
+}
+
+.wrapper {
+    height: 250px;
+    width: 250px;
+    position: relative;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    /* background: url("../../../../assets/user.webp"); */
+    background-size: 100% 100%;
+    margin: 30px auto;
+    overflow: hidden;
+}
+.my_file {
+    position: absolute;
+    bottom: 0;
+    outline: none;
+    color: blue;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 120px;
+    cursor: pointer;
+    transition: 0.5s;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+}
+
+.my_file::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.my_file::before {
+    content: "\f030";
+    font-family: Font Awesome 5 Free;
+    font-size: 30px;
+    color: #fff;
+    background-color: white;
+    display: inline-block;
+    -webkit-user-select: none;
+}
+
+.my_file::after {
+    content: "Update";
+    font-family: "arial";
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    top: 70px;
+    font-size: 14px;
+    position: absolute;
+}
+
+.my_file:hover {
+    opacity: 1;
+}
+
+.employee-img {
+    width: 250px;
+    height: 250px;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+    margin-top: 15px;
+}
+
+.underline {
+    width: 100%;
+    height: 3px;
+    background-color: rgb(115, 115, 230);
+    margin: 15px 0px;
+}
+
+.personal_info {
+    background-color: rgb(220, 229, 225);
+}
+
+.project {
+    background-color: rgb(210, 222, 227);
+}
+
+
+@media screen and (max-width: 300px) {
+    .cancelbtn,
+    .deletebtn {
+        width: 100%;
+    }
+}
+
+.example-form {
+    min-width: 300px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

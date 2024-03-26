@@ -1,0 +1,46 @@
+<div>
+    <div class="card text-dark bg-light mb-3 scrollable-list" style="max-width: 40rem; min-width: 40rem;">
+        <div class="card-header">
+            
+            Project Title: {{ project.title ? project.title : 'None' }}
+        </div>
+        <div class="card-body">
+            <p class="card-text"> Version: {{ project.version_number ? project.version_number : 'None' }}</p>
+            <p class="card-text"> Description: {{ project.description ? project.description : 'None' }}</p>
+            <p class="card-text"> Git Link: <a routerLink="{project.git_link}" target="_blank">{{ project.git_link ? project.git_link : 'None' }}</a></p>
+            <p class="card-text"> Start Date: {{ project.start_date | date:'short'}}</p>
+            <p class="card-text"> Start Date: {{ project.end_date | date:'short'}}</p>
+            <p class="card-text"> Priority: {{ project.priority? project.priority : 'None'}}</p>
+            <p class="card-text"> Status: {{ project.status? project.status : 'None'}}</p>
+
+            <p class="card-text"> Technologies :</p>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let tech of project.technologies; index as i">
+                        <ng-template [ngIf]="tech" [ngIfElse]="loading">{{tech}}</ng-template>
+                        <ng-template #loading>
+                            <!-- <div>Loading...</div> -->
+                        </ng-template>
+                    </li>
+                </ul>
+
+            <p class="card-text mt-2"> Members :</p>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let member of project.member; index as i">
+                        <ng-template [ngIf]="member.employee" [ngIfElse]="loading">
+                            {{member.employee.name}} - {{member.role}}
+                            <mat-icon *ngIf="!admin" class="text-danger" (click) = "deleteProjectMember(member._id,i)">delete</mat-icon>
+                        </ng-template>
+        
+                        <ng-template #loading>
+                            <!-- <div>Loading...</div> -->
+                        </ng-template>
+                    </li>
+                </ul>
+        
+        </div>
+    </div>
+    
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial> Close </button>
+    </mat-dialog-actions>
+</div>

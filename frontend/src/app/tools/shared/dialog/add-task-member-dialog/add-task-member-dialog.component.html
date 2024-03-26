@@ -1,0 +1,53 @@
+<div *ngIf="!language_selector">
+    <h1 mat-dialog-title>Add Task Member</h1>
+    <form class="example-form" [formGroup]="addMemberForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Select Member</mat-label>
+                <mat-select formControlName="member_id" multiple ngModel>
+                    <mat-option *ngFor="let project_member of new_members" [value]="project_member._id">
+                    {{project_member.employee.name}} -san
+                    </mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="addMemberForm.get('member_id').errors?.['required']">
+                    * Member is required
+                </mat-error>
+            </mat-form-field>
+        </mat-dialog-content>
+
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button cdkFocusInitial (click) ="addMember()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+
+<div *ngIf="language_selector">
+    <h1 mat-dialog-title>タスク メンバーの追加 </h1>
+    <form class="example-form" [formGroup]="addMemberForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>メンバーを選択</mat-label>
+                <mat-select formControlName="member_id" multiple ngModel>
+                    <mat-option *ngFor="let project_member of project_members" [value]="project_member._id">
+                    {{project_member.employee.name}} -san
+                    </mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="addMemberForm.get('member_id').errors?.['required']">
+                    * メンバー必須
+                </mat-error>
+            </mat-form-field>
+        </mat-dialog-content>
+
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>キャンセル</button>
+            <button mat-button cdkFocusInitial (click) ="addMember()">送信</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+
+

@@ -1,0 +1,458 @@
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenav mode="side" opened="true">
+        <mat-nav-list>
+            <mat-list-item>
+                <mat-icon mat-list-icon class="" (click)="isExpanded = !isExpanded">reorder</mat-icon>
+                <span *ngIf="isExpanded" style="margin-left: 10px"><img src="../../../assets/Logo1.png" alt="company logo"
+            width="150px" class="company_logo" /></span>
+
+            </mat-list-item>
+
+            <span *ngIf="current_url == 'Smart Office Management System'">
+        <!-- <span *ngIf="isExpanded" class="heading">Main Dashboard</span> -->
+
+                <app-main-sidebar [show_sidebar]="isExpanded"></app-main-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Website Dashboard'">
+        <!-- <span *ngIf="isExpanded" class="heading">Website Dashboard</span> -->
+            <app-website-dashboard-sidebar [show_sidebar]="isExpanded"> </app-website-dashboard-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'ToDo'">
+        <!-- <span *ngIf="isExpanded" class="heading">To Do</span> -->
+            <app-todo-sidebar [show_sidebar]="isExpanded"></app-todo-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Notes'">
+        <!-- <span *ngIf="isExpanded" class="heading">Notes</span> -->
+
+            <app-notes-sidebar [show_sidebar]="isExpanded"></app-notes-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Idea'">
+        <!-- <span *ngIf="isExpanded" class="heading">Idea</span> -->
+
+            <app-idea-sidebar [show_sidebar]="isExpanded"></app-idea-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Asset'">
+        <!-- <span *ngIf="isExpanded" class="heading">Asset</span> -->
+            <app-asset-sidebar [show_sidebar]="isExpanded"></app-asset-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Rules & Regulations'">
+        <!-- <span *ngIf="isExpanded" class="heading">Rules & Regulations</span> -->
+
+            <app-rules-regulations-sidebar [show_sidebar]="isExpanded"> </app-rules-regulations-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Health'">
+        <!-- <span *ngIf="isExpanded" class="heading">Health</span> -->
+
+            <app-health-sidebar [show_sidebar]="isExpanded"></app-health-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Project'">
+        <!-- <span *ngIf="isExpanded" class="heading">Project</span> -->
+
+            <app-project-sidebar [show_sidebar]="isExpanded"></app-project-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Discussion'">
+        <!-- <span *ngIf="isExpanded" class="heading">Discussion</span> -->
+
+            <app-discussion-sidebar [show_sidebar]="isExpanded"></app-discussion-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Employee'">
+        <!-- <span *ngIf="isExpanded" class="heading">Employee</span> -->
+
+            <app-employee-sidebar [show_sidebar]="isExpanded"> </app-employee-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Leave'">
+        <!-- <span *ngIf="isExpanded" class="heading">Leave</span> -->
+            <app-leave-sidebar [show_sidebar]="isExpanded"></app-leave-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'White Board'">
+        <!-- <span *ngIf="isExpanded" class="heading">White Board</span> -->
+
+            <app-white-board-sidebar [show_sidebar]="isExpanded"></app-white-board-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'Attendance'">  
+        <!-- <span *ngIf="isExpanded" class="heading">Attendance</span> -->
+
+            <app-attendance-sidebar [show_sidebar]="isExpanded"></app-attendance-sidebar>
+            </span>
+
+            <span *ngIf="current_url == 'employyeeEvaluation'"> 
+        <!-- <span *ngIf="isExpanded" class="heading">Attendance</span> -->
+
+            <app-evaluation-sidebar [show_sidebar]="isExpanded"></app-evaluation-sidebar>
+            </span>
+
+            <!-- <mat-list-item routerLink="/">
+        <mat-icon
+          mat-list-icon
+          class=""
+          matTooltip="Logout"
+          matTooltipPosition="after"
+          >repeat</mat-icon
+        >
+        <span *ngIf="isExpanded">Logout</span>
+      </mat-list-item> -->
+
+
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+
+
+
+    <mat-toolbar>
+        <div class="container-fluid fixed-top header">
+            <div class="row">
+
+                <div class="global-nav-right-part">
+
+                    <!-- <span>ENG &nbsp; <mat-slide-toggle color="primary" [checked]="language_selector" (click)="changeLang()"> JP</mat-slide-toggle></span> -->
+                    
+                    <img src="../../../assets/menu.png" type="button" (click)="handleContainerBox()" class="app_menu" alt="" width="10px" height="10px" />
+                    <mat-icon class="right_icon" matTooltip="Logout" matTooltipPosition="below" (click)="logout();">input</mat-icon>
+                </div>
+            </div>
+        </div>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+
+</mat-sidenav-container>
+
+<!-- For attendance module -->
+
+<!-- <ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Today Attendance</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row" style="padding-left: 8%">
+            <div class="col-3">
+                <button style="
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgb(173, 122, 221);
+            padding: 20px;
+            font-weight: 600;
+            color: white;
+            font-size: 18px;
+          ">
+          Start Work
+        </button>
+            </div>
+
+            <div class="col-3">
+                <button style="
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgb(122, 208, 221);
+            padding: 20px;
+            font-weight: 600;
+            color: white;
+            font-size: 18px;
+          ">
+          Start Lunch
+        </button>
+            </div>
+
+            <div class="col-3">
+                <button style="
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgb(214, 159, 76);
+            padding: 20px;
+            font-weight: 600;
+            color: white;
+            font-size: 18px;
+          ">
+          End Lunch
+        </button>
+            </div>
+
+            <div class="col-3">
+                <button style="
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgb(204, 74, 170);
+            padding: 20px;
+            font-weight: 600;
+            color: white;
+            font-size: 18px;
+          ">
+          End Work
+        </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">
+      Close
+    </button>
+    </div>
+</ng-template> -->
+
+<!-- For notice modal -->
+
+
+<!-- <ng-template #notice let-modal>
+
+    <div class="modal-header" style="background-color: rgb(241, 236, 229);">
+        <h4 style=" font-size: 20px;">Under Develped Module !</h4>
+    </div>
+
+
+    <div class="modal-body" style="background-color: rgb(238, 234, 229);">
+
+        This module will be developed in 2nd version.
+
+    </div>
+
+    <div class="modal-footer" style="background-color: rgb(243, 237, 230);">
+
+        <button mat-flat-button color="warn" (click)="modal.close('Close click')" style="margin-right: 10px;">Close</button>
+
+    </div>
+
+
+</ng-template> -->
+
+<!-- for module modal  -->
+
+<div *ngIf="showContainerBox" class="container--box">
+    <div class="container">
+       
+
+        <div class="row">
+            <!-- <h2>Completed Module : </h2> -->
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools"><img src="../../../assets/icon/mainDashboard.png" alt="" /></a>
+                </div>
+                <div class="description">Home</div>
+            </div>
+
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/project"><img src="../../../assets/icon/project.png" alt="" /></a>
+                </div>
+                <div class="description">Project</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/employee"><img src="../../../assets/icon/employee.png" alt="" /></a>
+                </div>
+                <div class="description">Employee</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="website/home"><img src="../../../assets/icon/uxLogo.png" alt="" /></a>
+                </div>
+                <div class="description">UXD</div>
+            </div>
+            
+            
+
+        </div>
+
+        <!-- <div class="row">
+            <h2>Running Module : Version-1.1</h2>
+            <div class="col-4">
+                <div class="icon">
+                    <a href="website/home"><img src="../../../assets/icon/uxLogo.png" alt="" /></a>
+                </div>
+                <div class="description">UXD</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/leave"><img src="../../../assets/icon/leave.png" alt="" /></a>
+                </div>
+                <div class="description">Leave</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/asset"><img src="../../../assets/icon/asset1.png" alt="" /></a>
+                </div>
+                <div class="description">Asset</div>
+            </div>
+            
+        </div>
+
+        <div class="row">
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/website-dashboard"><img src="../../../assets/icon/web.png" alt="" /></a>
+                </div>
+                <div class="description">Website</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/notes"><img src="../../../assets/icon/notes.png" alt="" /></a>
+                </div>
+                <div class="description">Notes</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/whiteBoard"><img src="../../../assets/icon/whiteboard.png" alt="" /></a>
+                </div>
+                <div class="description">WhiteBoard</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/idea"><img src="../../../assets/icon/idea.png" alt="" /></a>
+                </div>
+                <div class="description">Idea</div>
+            </div>
+
+            
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/ToDo"><img src="../../../assets/icon/todo.png" alt="" /></a>
+                </div>
+                <div class="description">ToDo</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/discussion"><img src="../../../assets/icon/discuss.png" alt="" /></a>
+                </div>
+                <div class="description">Discussion</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/rules-regulations"><img src="../../../assets/icon/rules.png" alt="" /></a>
+                </div>
+                <div class="description">Rules</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/health"><img src="../../../assets/icon/health.png" alt="" /></a>
+                </div>
+                <div class="description">Health</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/attendance"><img src="../../../assets/icon/attendance.png" alt="" /></a>
+                </div>
+                <div class="description">Attendance</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a href="/tools/employyeeEvaluation"><img src="../../../assets/icon/attendance.png" alt="" /></a>
+                </div>
+                <div class="description">Evaluation</div>
+            </div>
+
+            <hr>
+            <h4 style="text-align: left; color: rgb(40, 57, 120);">Future Development Tools:</h4>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/acquisition.png" alt="" /></a>
+                </div>
+                <div class="description">Sales</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/invest.png" alt="" /></a>
+                </div>
+                <div class="description">Investment</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/trash.png" alt="" /></a>
+                </div>
+                <div class="description">Erase</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/Environment.png" alt="" /></a>
+                </div>
+                <div class="description">Environment</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/meeting.png" alt="" /></a>
+                </div>
+                <div class="description">Meeting</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/chat.png" alt="" /></a>
+                </div>
+                <div class="description">Chat</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/email.png" alt="" /></a>
+                </div>
+                <div class="description">Email</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/salary.png" alt="" /></a>
+                </div>
+                <div class="description">Salary</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/calendar.png" alt="" /></a>
+                </div>
+                <div class="description">Calender</div>
+            </div>
+
+            <div class="col-4">
+                <div class="icon">
+                    <a (click)="openMd(notice)"><img src="../../../assets/icon/check-list.png" alt="" /></a>
+                </div>
+                <div class="description">Evaluation</div>
+            </div>
+
+
+        </div> -->
+    </div>
+</div>

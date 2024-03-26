@@ -1,0 +1,45 @@
+.employee-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .profile-details h3 {
+    margin-bottom: 10px;
+  }
+  
+  .profile-details ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .profile-details li {
+    margin-bottom: 5px;
+  }
+  
+  .profile-details li strong {
+    display: inline-block;
+    width: 80px;
+    font-weight: bold;
+  }
+  

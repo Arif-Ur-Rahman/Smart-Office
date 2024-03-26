@@ -1,0 +1,80 @@
+<div>
+    <h1 mat-dialog-title>Create Task</h1>
+    <form class="example-form" [formGroup]="createTaskForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Title  </mat-label>
+                <input matInput placeholder="Enter task title" formControlName="title"/>
+
+                <mat-error *ngIf="createTaskForm.get('title').errors?.['required']">
+                    * Task title is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Description </mat-label>
+                <textarea matInput formControlName="description" ngModel placeholder="Enter Task Description.."></textarea>
+                <mat-error *ngIf="createTaskForm.get('description').errors?.['required']">
+                    * Description is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Start Date </mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="start_date" ngModel>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+
+                <mat-error *ngIf="createTaskForm.get('start_date').errors?.['required']">
+                    * Start date is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>End Date  </mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="end_date" ngModel>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+
+                <mat-error *ngIf="createTaskForm.get('end_date').errors?.['required']">
+                    * End date is required !
+                </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Deficulties </mat-label>
+                <mat-select formControlName="dificulty" ngModel>
+                    <mat-option *ngFor="let deficulty of deficulties" [value]="deficulty._id">
+                    {{deficulty.title}}
+                    </mat-option>
+                </mat-select> 
+                <mat-error *ngIf="createTaskForm.get('dificulty').errors?.['required']">
+                    * Dificulty Level is required !
+                </mat-error>
+            </mat-form-field>  -->
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Assign to </mat-label>
+                <mat-select formControlName="assign_member" [ngModel] multiple>
+                    <mat-option *ngFor="let project_member of project_members" [value]="project_member._id">
+                        <span *ngIf="project_member.employee"> {{ project_member.employee.name }} </span>
+                    
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="createTaskForm.get('assign_member').errors?.['required']">
+                    * Assign member is required !
+                </mat-error>
+            </mat-form-field>
+        </mat-dialog-content>
+    
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button cdkFocusInitial (click) = "create()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+
+
+

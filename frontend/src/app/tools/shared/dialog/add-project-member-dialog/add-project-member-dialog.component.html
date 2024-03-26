@@ -1,0 +1,46 @@
+<div>
+    <h1 mat-dialog-title>Add Member</h1>
+    <form class="example-form" [formGroup]="addMemberForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Select Member</mat-label>
+                <mat-select formControlName="member_id" ngModel>
+                    <mat-option *ngFor="let employee of employees" [value]="employee._id">
+                        {{ employee.name }}
+                    </mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="addMemberForm.get('member_id').errors?.['required']">
+                    * Member is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Select Role</mat-label>
+                <mat-select formControlName="role_id" ngModel>
+                    <mat-option value="Manager">Manager</mat-option>
+                    <mat-option value="Tech Manager">Tech Manager</mat-option>
+                    <mat-option value="General Manager">General Manager</mat-option>
+                    <mat-option value="Leader">Leader</mat-option>
+                    <mat-option value="Sub Leader">Sub Leader</mat-option>
+                    <mat-option value="Trainer">Trainer</mat-option>
+                    <mat-option value="Software Engineer">Software Engineer</mat-option>
+                    <mat-option value="Trainee">Trainee</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="addMemberForm.get('role_id').errors?.['required']">
+                    * Role is required
+                </mat-error>
+            </mat-form-field>
+        </mat-dialog-content>
+
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button mat-dialog-close>Cancel</button>
+            <button [disabled]="!addMemberForm.valid" type="button" mat-button cdkFocusInitial (click) ="addMember()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+
+
+
+

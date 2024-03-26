@@ -1,0 +1,124 @@
+<div class="container-fluid" cdkDropListGroup>
+    
+    <div class="row">
+        
+
+        <div class="col-12">
+            <h2 class="text-center">My All Project Task</h2>
+        </div>
+    </div>
+
+    <div class="row">
+            <span class="alert alert-success text-center m-3" *ngIf="task_create_msg" style="margin-right: 20px;">Task created successfully.</span>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;"> New  </h2>
+                
+                <div class="example-list"
+                    cdkDropList
+                    #newList="cdkDropList"
+                    [cdkDropListData]="new_tasks"
+                    [cdkDropListConnectedTo]="[backlogList, readyList, inProgressList, inReviewList, doneList]"
+                    (cdkDropListDropped)="drop($event)">
+                    
+                    <div class="example-box" *ngFor="let task of new_tasks; index as i" [ngStyle]="{'background': 'white'}"  cdkDrag>
+                         {{task.title}}  - Smart Office
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;">  Backlog  </h2>
+                
+                <div class="example-list"
+                    cdkDropList
+                    #backlogList="cdkDropList"
+                    [cdkDropListData]="backlog_tasks"
+                    [cdkDropListConnectedTo]="[newList, readyList, inProgressList, inReviewList, doneList]"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of backlog_tasks; index as i" [ngStyle]="{'background': 'white'}" cdkDrag>
+                        <span> {{task.title}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;"> Ready  </h2>
+                
+                <div
+                    cdkDropList
+                    #readyList="cdkDropList"
+                    [cdkDropListData]="ready_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, inProgressList, inReviewList, doneList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of ready_tasks; index as i" [ngStyle]="{'background': 'white'}" cdkDrag>
+                        {{task.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;">  In Progress  </h2>
+                
+                <div
+                    cdkDropList
+                    #inProgressList="cdkDropList"
+                    [cdkDropListData]="inProgress_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, readyList, inReviewList, doneList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of inProgress_tasks; index as i" [ngStyle]="{'background': 'white'}" cdkDrag>
+                        {{task.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;">  In Review  </h2>
+                <div
+                    cdkDropList
+                    #inReviewList="cdkDropList"
+                    [cdkDropListData]="inReview_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, readyList, inProgressList, doneList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of inReview_tasks; index as i" [ngStyle]="{'background': 'white'}" cdkDrag>
+                        {{task.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;"> Done</h2>
+                
+                <div
+                    cdkDropList
+                    #doneList="cdkDropList"
+                    [cdkDropListData]="done_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, readyList, inProgressList, inReviewList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of done_tasks; index as i" [ngStyle]="{'background': 'white'}" cdkDrag>
+                        {{task.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

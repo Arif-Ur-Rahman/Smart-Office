@@ -1,0 +1,101 @@
+.mat-card {
+  max-width: 400px;
+  margin-bottom: 1rem;
+}
+.mat-card:hover {
+  background-color: rgb(239, 241, 243);
+}
+.mat-card .avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border-width: 1px red;
+}
+.mat-card .more-button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+.status {
+  position: absolute;
+  right: 5rem;
+  top: 1.7rem;
+}
+.project-details {
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+.member-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.member-container .member-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-left: 1rem;
+}
+.member-container .member-list .avatar {
+  width:5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dialog-Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: aqua; */
+  align-items: center;
+  height: 2.5rem;
+}
+
+.dialog-Header .avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  /* border-width: 1px red; */
+}
+
+.dialog-status {
+  display: flex;
+  align-items: center;
+  font-size: medium;
+  padding-right: 2rem;
+}
+.header-left {
+  display: flex;
+  flex-direction: row;
+}
+h1 {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-form {
+  display: flex;
+  flex-direction: column;
+  /* width: 30rem; */
+  padding: 1rem;
+}
+
+.view_dialog{
+  min-width: 700px;
+}
+
+.scrollable-list {
+  max-height: 500px; /* set the maximum height of the container */
+  overflow-y: auto; /* enable vertical scrolling */
+}

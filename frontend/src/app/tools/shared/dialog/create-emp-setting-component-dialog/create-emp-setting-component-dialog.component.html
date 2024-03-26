@@ -1,0 +1,29 @@
+<h1 mat-dialog-title *ngIf="language_selector">作成</h1>
+<h1 mat-dialog-title *ngIf="! language_selector">Create</h1>
+<form class="example-form" [formGroup]="createRoleForm" (ngSubmit) ="Create()" *ngIf="language_selector">
+    <mat-dialog-content>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>題名</mat-label>
+            <input matInput placeholder="Create a role" formControlName="title"/>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>キャンセル</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click) ="Create()">送信</button>
+      </mat-dialog-actions>
+</form>
+
+<form class="example-form" [formGroup]="createRoleForm" (ngSubmit) ="Create()" *ngIf="! language_selector">
+    <mat-dialog-content>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Create a role" formControlName="title"/>
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click) ="Create()">Submit</button>
+      </mat-dialog-actions>
+</form>

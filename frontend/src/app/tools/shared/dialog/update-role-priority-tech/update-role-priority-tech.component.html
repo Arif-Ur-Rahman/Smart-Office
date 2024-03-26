@@ -1,0 +1,35 @@
+<div *ngIf="!language_selector">
+    <h1 mat-dialog-title>Update {{title}}</h1>
+    <form class="example-form" [formGroup]="updateForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder={{old_title}} formControlName="title"/>
+            </mat-form-field>
+        </mat-dialog-content>
+        
+        <mat-dialog-actions>
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button cdkFocusInitial mat-dialog-close (click) ="Update()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+
+
+<div *ngIf="language_selector">
+    <h1 mat-dialog-title>アップデート {{title}}</h1>
+    <form class="example-form" [formGroup]="updateForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>題名</mat-label>
+                <input matInput placeholder={{old_title}} formControlName="title"/>
+            </mat-form-field>
+        </mat-dialog-content>
+        
+        <mat-dialog-actions>
+            <button mat-button mat-dialog-close>キャンセル</button>
+            <button mat-button cdkFocusInitial mat-dialog-close (click) ="Update()">送信</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+

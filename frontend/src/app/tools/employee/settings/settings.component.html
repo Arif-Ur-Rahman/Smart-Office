@@ -1,0 +1,259 @@
+<div class="container-fluid" *ngIf="language_selector">
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">指定</h2>
+
+          <ul class="list-group" *ngFor="let designation of designations; index as i ">
+            <li class="list-group-item list-group-item-info" 
+            style="display: grid; grid-template-columns: 1fr 20px;">
+              {{designation.title}}
+              <span class="position-absolute top-0 end-0 mt-1">
+                <mat-icon style="color: green; font-size: 20px;" 
+                (click)="openDesignationUpdateDialog(designation._id, i)"
+                >edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" 
+                (click)="openDesignationDeleteDialog(designation._id, i)"
+                >delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+            <mat-icon
+              class="add"
+              matTooltip="役割を追加"
+              matTooltipPosition="left"
+              (click)="CreateDesignationDialog()"
+              >add</mat-icon
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">デパートメント</h2>
+
+          <ul class="list-group" *ngFor="let department of departments; index as i">
+            <li class="list-group-item list-group-item-info">
+              {{department.title}}
+              <span class="position-absolute top-0 end-0 mt-1">
+                <mat-icon style="color: green; font-size: 20px" (click)="openDepartmentUpdateDialog(department._id, i)">edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" (click)="openDepartmentDeleteDialog(department._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+          <mat-icon
+          class="add"
+          matTooltip="役割を追加"
+          matTooltipPosition="left"
+          (click)="CreateDepartmentDialog()"
+          >add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">テクノロジー</h2>
+
+          <ul class="list-group" *ngFor="let technology of technologies; index as i">
+            <li class="list-group-item list-group-item-info">
+              {{technology.title}}
+
+              <span class="position-absolute top-0 end-0 mt-1">
+                <mat-icon style="color: green; font-size: 20px" (click)="openTechnologyUpdateDialog(technology._id, i)">edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" (click)="openTechnologyDeleteDialog(technology._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+          <mat-icon
+          class="add"
+          matTooltip="役割を追加"
+          matTooltipPosition="left"
+          (click)="CreateTechnologyDialog()"
+          >add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">アクセス</h2>
+
+          <ul class="list-group" *ngFor="let access of access; index as i">
+            <li class="list-group-item list-group-item-info">
+              {{access.title}}
+
+              <span class="position-absolute top-0 end-0 mt-1">
+                <mat-icon style="color: green; font-size: 20px" (click)="openAccessUpdateDialog(access._id, i)">edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" (click)="openAccessDeleteDialog(access._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+          <mat-icon
+          class="add"
+          matTooltip="役割を追加"
+          matTooltipPosition="left"
+          (click)="CreateAccessDialog()"
+          >add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+
+<div class="container-fluid" *ngIf="! language_selector">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Designation</h2>
+
+          <ul class="list-group" *ngFor="let designation of designations; index as i ">
+            <li class="list-group-item list-group-item-info" style="grid-template-columns: 1fr 20px;">
+              {{designation.title}}
+              <span class="position-absolute top-0 end-0 mt-1">
+                <mat-icon style="color: rgb(6, 9, 83); font-size: 20px" (click)="openDesignationUpdateDialog(designation._id, i)">edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" (click)="openDesignationDeleteDialog(designation._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+            <mat-icon
+              class="add"
+              matTooltip="Add Role"
+              matTooltipPosition="left"
+              (click)="CreateDesignationDialog()"
+              >add</mat-icon
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Department</h2>
+
+          <ul class="list-group" *ngFor="let department of departments; index as i">
+            <li class="list-group-item list-group-item-info">
+              {{department.title}}
+              <span class="position-absolute top-0 end-0 mt-1">
+                <mat-icon style="color: green; font-size: 20px" (click)="openDepartmentUpdateDialog(department._id, i)">edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" (click)="openDepartmentDeleteDialog(department._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+          <mat-icon
+          class="add"
+          matTooltip="Add Role"
+          matTooltipPosition="left"
+          (click)="CreateDepartmentDialog()"
+          >add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Technology</h2>
+
+          <ul class="list-group" *ngFor="let technology of technologies; index as i">
+            <li class="list-group-item list-group-item-info"style="position:relative">
+              {{technology.title}}
+
+              <span class="position-absolute top-0 end-0 mt-1" style="position:absolute; right:10px">
+                <mat-icon style="color: green; font-size: 20px" (click)="openTechnologyUpdateDialog(technology._id, i)">edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" (click)="openTechnologyDeleteDialog(technology._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+          <mat-icon
+          class="add"
+          matTooltip="Add Role"
+          matTooltipPosition="left"
+          (click)="CreateTechnologyDialog()"
+          >add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center">Access</h2>
+
+          <ul class="list-group" *ngFor="let access of access; index as i">
+            <li class="list-group-item list-group-item-info">
+              {{access.title}}
+
+              <span class="position-absolute top-0 end-0 mt-1">
+                <mat-icon style="color: green; font-size: 20px" (click)="openAccessUpdateDialog(access._id, i)">edit</mat-icon>
+                <mat-icon style="color: red; font-size: 20px" (click)="openAccessDeleteDialog(access._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px"
+          >
+          <mat-icon
+          class="add"
+          matTooltip="Add Role"
+          matTooltipPosition="left"
+          (click)="CreateAccessDialog()"
+          >add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>

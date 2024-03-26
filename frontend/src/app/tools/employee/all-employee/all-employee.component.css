@@ -1,0 +1,221 @@
+
+
+.header{
+  background-color: rgb(128, 175, 219);;
+  padding-left: 20px;
+  font-weight: 500;
+}
+
+.jp_team{
+  width: 100%;
+  background-color: rgb(218, 224, 236);
+  margin-bottom: 20px;
+}
+
+.team-header{
+  text-align: center;
+  font-weight: 600;
+}
+.employee{
+  /* width: 275px; 
+  height:auto;
+  background-color: rgb(218, 238, 238); 
+  margin: 20px;
+  text-align:center;
+  box-sizing:border-box;
+  padding-bottom: 10px; */
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+max-width: 300px;
+height:400px;
+margin: auto;
+text-align: center;
+font-family: arial;
+background-color: rgb(255, 255, 255);
+
+  
+}
+
+.employee-img{
+  width:280px;
+  height:150px;
+  display:block;
+  margin:auto;
+  border-radius:none;
+  margin-top: 0px;
+}
+
+.employee h1{
+  text-transform:uppercase;
+  margin-top:20px;
+  margin-bottom:20px;
+  line-height:24px
+}
+
+.employee h1 span{
+  font-size:14px;
+  color:#124ef3
+}
+
+.employee p{
+  text-align: justify;
+  padding: 0px 15px;
+}
+
+.employee ul{
+  list-style: none;
+}
+
+
+.employee ul li{
+  display:inline-block;
+  margin:20px 10px
+}
+.employee ul li a{
+  color:#2980b9;
+  font-size:20px;
+  transition:0.2s;
+}
+.employee ul li a:hover{
+  color:#000
+}
+.employee a.btn{
+  border: none;
+outline: 0;
+display: inline-block;
+padding: 8px;
+color: white;
+background-color: #000;
+text-align: center;
+cursor: pointer;
+width: 100%;
+font-size: 18px;
+border-bottom: 0px;
+}
+.employee a.btn2{
+  border: none;
+outline: 0;
+padding: 8px;
+color: white;
+background-color: rgb(34, 74, 139);
+text-align: center;
+cursor: pointer;
+width:100%;
+font-size: 18px;
+border-bottom: 0px;
+}
+
+/* New Button Workout Arif */
+
+.btn-group button {
+  background-color: #eaf0ef; /* Green background */
+  border: 1px solid rgb(255, 255, 255); /* Green border */
+  color: rgb(0, 0, 0); /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  float: left; /* Float the buttons side by side */
+  border-radius: 5px;
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #727171;
+  color: #ddd;
+}
+.employee a.btn:hover{
+  border-color:#124ef3
+}
+
+
+.employee:before{
+  
+  width:100px;
+  height:100px;
+  background:#ddd;
+  bottom:0;
+  right:0;
+  z-index:-1;
+  border-top-left-radius:100px;
+  transition:0.5s;
+}
+
+/* Search Employee Modal Starts: Arif */
+.modal-dialog {
+  max-width: 90%;
+}
+.modal-dialog-slideout {
+  min-height: 100%;
+  margin: 0 0 0 auto;
+  background: #fff;
+}
+.modal.fade .modal-dialog.modal-dialog-slideout {
+  -webkit-transform: translate(100%, 0)scale(1);
+  transform: translate(100%, 0)scale(1);
+}
+.modal.fade.show .modal-dialog.modal-dialog-slideout {
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+  display: flex;
+  align-items: stretch;
+  -webkit-box-align: stretch;
+  height: 100%;
+}
+.modal.fade.show .modal-dialog.modal-dialog-slideout .modal-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.modal-dialog-slideout .modal-content {
+  border: 0;
+}
+.modal-dialog-slideout .modal-header,
+.modal-dialog-slideout .modal-footer {
+  height: 4rem;
+  display: block;
+}
+
+.card-img-height{
+  height: 300px;
+}
+/* Search Employee Modal Ends: Arif */
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+th{
+  background-color: #2980b9;
+}
+
+td, th {
+  width: 10%;
+}
+div.search{
+  border: #000;
+  position: absolute;
+  
+  
+}
+.search_container{
+  float: right;
+}
+
+
+
+

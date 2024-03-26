@@ -1,0 +1,122 @@
+<div>
+    <h1 mat-dialog-title>Create New Project</h1>
+    <mat-dialog-content>
+        <form class="example-form" (ngSubmit)="addProject()" [formGroup]="createProjectForm">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Title </mat-label>
+                <input matInput formControlName="project_title" placeholder="Enter project title here" />
+
+                <mat-error *ngIf="project_title.errors?.['required']">
+                    * Project title is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Version </mat-label>
+                <input matInput formControlName="version" placeholder="Ex. 1.0.0, 2.1.1" />
+
+                <mat-error *ngIf="createProjectForm.get('version').errors?.['required']">
+                    * Project version is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Git link</mat-label>
+                <input matInput formControlName="git_link" placeholder="Enter git link here"/>
+
+                <mat-error *ngIf="git_link.hasError('pattern')">* Invalid URL format !</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Start Date </mat-label>
+                <input matInput [matDatepicker]="picker1" formControlName="start_date"  placeholder="Enter start date here">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+
+                <mat-error *ngIf="createProjectForm.get('start_date').errors?.['required']">
+                    * Start date is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>End Date </mat-label>
+                <input matInput [matDatepicker]="picker2" formControlName="end_date"  placeholder="Enter end date here">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+
+                <mat-error *ngIf="createProjectForm.get('end_date').errors?.['required']">
+                    * End date is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Progress</mat-label>
+                <input matInput formControlName="progress_percentage"  placeholder="Ex. 10, 20" />
+
+                <mat-error *ngIf="createProjectForm.get('progress_percentage').errors?.['required']">
+                    * Project progress is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Technology</mat-label>
+                <!-- <input matInput formControlName="technology" ngModel placeholder="Ex. react, vue, php" /> -->
+                <mat-select matInput formControlName="technology"  placeholder="Enter project technology here" multiple>
+                    <mat-option value="React">React</mat-option>
+                    <mat-option value="Vue">Vue</mat-option>
+                    <mat-option value="Php">Php</mat-option>
+                    <mat-option value="Php">Mysql</mat-option>
+                    <mat-option value="Php">Php</mat-option>
+                    <mat-option value="Php">C++</mat-option>
+                    <mat-option value="Php">C#</mat-option>
+                    <mat-option value="Php">Flutter</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="createProjectForm.get('technology').errors?.['required']">
+                    * Technology is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Priority </mat-label>
+                <mat-select matInput formControlName="priority"  placeholder="Enter project priority here">
+                    <mat-option value="High">High</mat-option>
+                    <mat-option value="Medium">Medium</mat-option>
+                    <mat-option value="Low">Low</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="createProjectForm.get('priority').errors?.['required']">
+                    * Priority is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Status </mat-label>
+                <mat-select matInput formControlName="project_status"  placeholder="Enter project status here">
+                    <mat-option value="NEW">NEW</mat-option>
+                    <mat-option value="BACKLOG">BACKLOG</mat-option>
+                    <mat-option value="READY">READY</mat-option>
+                    <mat-option value="IN_PROGRESS">IN_PROGRESS</mat-option>
+                    <mat-option value="IN_REVIEW">IN_REVIEW</mat-option>
+                    <mat-option value="DONE">DONE</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="createProjectForm.get('project_status').errors?.['required']">
+                    * Status is required !
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" class="example-full-width" appearance="fill">
+                <mat-label>Summary</mat-label>
+                <textarea matInput formControlName="description"  placeholder="Enter project summary here"></textarea>
+            </mat-form-field>
+
+            <div mat-dialog-actions align="end">
+                <button type="button" mat-button [mat-dialog-close]="true">Cancel</button>
+                <button type="button" mat-button [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
+            </div>
+        </form>
+    </mat-dialog-content>
+</div>

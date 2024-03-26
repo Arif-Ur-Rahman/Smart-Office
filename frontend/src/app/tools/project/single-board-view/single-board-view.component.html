@@ -1,0 +1,302 @@
+<!-- <app-kanban-board [project_id] = id ></app-kanban-board> -->
+<div class="container" cdkDropListGroup>
+    
+
+    <div class="row">
+
+        <h2 class="alert alert-primary" role="alert" *ngIf="!language_selector"> {{title}} </h2>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;" *ngIf="!language_selector"> New  </h2>
+                
+                <button mat-stroked-button style="width: 100%; background-color: rgb(205, 205, 247);" (click) = add_new_task(states[0]._id) ><mat-icon >add</mat-icon></button>
+                <div class="example-list"
+                    cdkDropList
+                    #newList="cdkDropList"
+                    [cdkDropListData]="new_tasks"
+                    [cdkDropListConnectedTo]="[backlogList, readyList, inProgressList, inReviewList, doneList]"
+                    (cdkDropListDropped)="drop($event)">
+                    
+                    <div class="example-box" *ngFor="let task of new_tasks; index as i" [ngStyle]="{'background': '#F5A623'}"  cdkDrag>
+                       
+
+                         {{task.title}}  
+                        <!-- <span>{{task.assigned_to[1].employee.name}}</span> -->
+
+                        
+                        
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" > 
+                            <mat-icon>more_vert</mat-icon> 
+                        </button>
+                        
+                        
+        
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item (click) = edit_new_task(states[0]._id,task._id,i)>
+                                <mat-icon style="color: blue;">edit</mat-icon>
+                                <span *ngIf="!language_selector">Edit</span>
+                               
+                            </button>
+        
+                            <button mat-menu-item (click) = delete_new_task(states[0]._id,task._id,i)>
+                                <mat-icon style="color: red;">delete</mat-icon>
+                                <span *ngIf="!language_selector">Delete</span>
+                                
+                            </button>
+        
+                            <button mat-menu-item (click) = show_details_new_task(i)>
+                                <mat-icon style="color: rgb(9, 119, 120);">details</mat-icon>
+                                <span *ngIf="!language_selector">Details</span>
+                                
+                            </button>
+        
+                            <button mat-menu-item (click) = add_new_task_member(states[0]._id,task._id,i)>
+                                <mat-icon style="color: rgb(205, 121, 24);">add</mat-icon>
+                                <span *ngIf="!language_selector">Add Member</span>
+                                
+                            </button>
+                        </mat-menu>
+
+                        
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;" *ngIf="!language_selector">  Backlog  </h2>
+                
+                <!-- <button mat-stroked-button style="width: 100%; background-color: rgb(205, 205, 247);" (click) = add_backlog_task(states[1]._id)><mat-icon>add</mat-icon></button> -->
+                <div class="example-list"
+                    cdkDropList
+                    #backlogList="cdkDropList"
+                    [cdkDropListData]="backlog_tasks"
+                    [cdkDropListConnectedTo]="[newList, readyList, inProgressList, inReviewList, doneList]"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of backlog_tasks; index as i" [ngStyle]="{'background': '#E0FFFF'}" cdkDrag>
+                        {{task.title}}
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" > 
+                            <mat-icon>more_vert</mat-icon> 
+                        </button>
+            
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item (click) = edit_backlog_task(states[1]._id,task._id,i)>
+                                <mat-icon style="color: blue;">edit</mat-icon>
+                                <span *ngIf="!language_selector">Edit</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = delete_backlog_task(states[1]._id,task._id,i)>
+                                <mat-icon style="color: red;">delete</mat-icon>
+                                <span *ngIf="!language_selector">Delete</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = show_details_backlog_task(i)>
+                                <mat-icon style="color: rgb(9, 119, 120);">details</mat-icon>
+                                <span *ngIf="!language_selector">Details</span>
+                               
+                            </button>
+        
+        
+                            <button mat-menu-item (click) = add_backlog_task_member(states[1]._id,task._id,i)>
+                                <mat-icon style="color: rgb(205, 121, 24);">add</mat-icon>
+                                <span *ngIf="!language_selector">Add Member</span>
+                               
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;" *ngIf="!language_selector"> Ready  </h2>
+                
+                <!-- <button mat-stroked-button style="width: 100%; background-color: rgb(205, 205, 247);" (click) = add_ready_task(states[2]._id)><mat-icon>add</mat-icon></button> -->
+                <div
+                    cdkDropList
+                    #readyList="cdkDropList"
+                    [cdkDropListData]="ready_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, inProgressList, inReviewList, doneList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of ready_tasks; index as i" [ngStyle]="{'background': '#66BB6A'}" cdkDrag>
+                        {{task.title}}
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" > 
+                            <mat-icon>more_vert</mat-icon> 
+                        </button>
+            
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item (click) = edit_ready_task(states[2]._id,task._id,i)> 
+                                <mat-icon style="color: blue;">edit</mat-icon>
+                                <span *ngIf="!language_selector">Edit</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = delete_ready_task(states[2]._id,task._id,i)>
+                                <mat-icon style="color: red;">delete</mat-icon>
+                                <span *ngIf="!language_selector">Delete</span>
+                               
+                            </button>
+                            <button mat-menu-item (click) = show_details_ready_task(i)>
+                                <mat-icon style="color: rgb(9, 119, 120);">details</mat-icon>
+                                <span *ngIf="!language_selector">Details</span>
+                               
+                            </button>
+                            <button mat-menu-item (click) = add_ready_task_member(states[2]._id,task._id,i)>
+                                <mat-icon style="color: rgb(205, 121, 24);">add</mat-icon>
+                                <span *ngIf="!language_selector">Add Member</span>
+                                
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;" *ngIf="!language_selector">  In Progress  </h2>
+                
+                <!-- <button mat-stroked-button style="width: 100%; background-color: rgb(205, 205, 247);" (click) = add_InProgress_task(states[3]._id)><mat-icon>add</mat-icon></button> -->
+                <div
+                    cdkDropList
+                    #inProgressList="cdkDropList"
+                    [cdkDropListData]="inProgress_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, readyList, inReviewList, doneList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of inProgress_tasks; index as i" [ngStyle]="{'background': '#03A9F4'}" cdkDrag>
+                        {{task.title}}
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" > 
+                            <mat-icon>more_vert</mat-icon> 
+                        </button>
+            
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item (click) = edit_InProgress_task(states[3]._id,task._id,i)>
+                                <mat-icon style="color: blue;">edit</mat-icon>
+                                <span *ngIf="!language_selector">Edit</span>
+                               
+                            </button>
+                            <button mat-menu-item (click) = delete_InProgress_task(states[3]._id,task._id,i)>
+                                <mat-icon style="color: red;">delete</mat-icon>
+                                <span *ngIf="!language_selector">Delete</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = show_details_inProgress_task(i)>
+                                <mat-icon style="color: rgb(9, 119, 120);">details</mat-icon>
+                                <span *ngIf="!language_selector">Details</span>
+                               
+                            </button>
+                            <button mat-menu-item (click) = add_inProgress_task_member(states[3]._id,task._id,i)>
+                                <mat-icon style="color: rgb(205, 121, 24);">add</mat-icon>
+                                <span *ngIf="!language_selector">Add Member</span>
+                                
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;" *ngIf="!language_selector">  In Review  </h2>
+                <!-- <button mat-stroked-button style="width: 100%; background-color: rgb(205, 205, 247);" (click) = add_InReview_task(states[4]._id)><mat-icon>add</mat-icon></button> -->
+                <div
+                    cdkDropList
+                    #inReviewList="cdkDropList"
+                    [cdkDropListData]="inReview_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, readyList, inProgressList, doneList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of inReview_tasks; index as i" [ngStyle]="{'background': '#9C27B0 '}" cdkDrag>
+                        {{task.title}}
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" > 
+                            <mat-icon>more_vert</mat-icon> 
+                        </button>
+            
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item (click) = edit_InReview_task(states[4]._id,task._id,i)>
+                                <mat-icon style="color: blue;">edit</mat-icon>
+                                <span *ngIf="!language_selector">Edit</span>
+                             
+                            </button>
+                            <button mat-menu-item (click) = delete_InReview_task(states[4]._id,task._id,i)>
+                                <mat-icon style="color: red;">delete</mat-icon>
+                                <span *ngIf="!language_selector">Delete</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = show_details_inReview_task(i)>
+                                <mat-icon style="color: rgb(9, 119, 120);">details</mat-icon>
+                                <span *ngIf="!language_selector">Details</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = add_inReview_task_member(states[4]._id,task._id,i)>
+                                <mat-icon style="color: rgb(205, 121, 24);">add</mat-icon>
+                                <span *ngIf="!language_selector">Add Member</span>
+                               
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+        
+        <div class="col-lg-2 col-md-4 col-sm-6">
+            <div class="example-container">
+                <h2 style="text-align: center;" *ngIf="!language_selector"> Done</h2>
+                
+                <!-- <button mat-stroked-button style="width: 100%; background-color: rgb(205, 205, 247);" (click) = add_done_task(states[5]._id)><mat-icon>add</mat-icon></button> -->
+                <div
+                    cdkDropList
+                    #doneList="cdkDropList"
+                    [cdkDropListData]="done_tasks"
+                    [cdkDropListConnectedTo]="[newList, backlogList, readyList, inProgressList, inReviewList]"
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let task of done_tasks; index as i" [ngStyle]="{'background': '#00BCD4'}" cdkDrag>
+                        {{task.title}}
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" > 
+                            <mat-icon>more_vert</mat-icon> 
+                        </button>
+            
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button mat-menu-item (click) = edit_done_task(states[5]._id,task._id,i)>
+                                <mat-icon style="color: blue;">edit</mat-icon>
+                                <span *ngIf="!language_selector">Edit</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = delete_done_task(states[5]._id,task._id,i)>
+                                <mat-icon style="color: red;">delete</mat-icon>
+                                <span *ngIf="!language_selector">Delete</span>
+                                
+                            </button>
+                            <button mat-menu-item (click) = show_details_done_task(i)>
+                                <mat-icon style="color: rgb(9, 119, 120);">details</mat-icon>
+                                <span *ngIf="!language_selector">Details</span>
+                               
+                            </button>
+                            <button mat-menu-item (click) = add_done_task_member(states[5]._id,task._id,i)>
+                                <mat-icon style="color: rgb(205, 121, 24);">add</mat-icon>
+                                <span *ngIf="!language_selector">Add Member</span>
+                                
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    
+        
+    
+        
+    
+       
+    </div>
+</div>

@@ -1,0 +1,123 @@
+/* .container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  padding: 1rem;
+} */
+
+.footer-container {
+  width: 100%;
+  background-color: #00A0C6;
+  text-align: center;
+  padding: 8px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  color: #ffffff;
+}
+
+/* Header cells */
+.mat-header-cell {
+  background-color: #037184;
+  color: #fff;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 16px;
+  vertical-align: middle;
+
+  /* padding-right: 0px; */
+  border-bottom: 1px solid #ddd;
+}
+
+.mat-sort-header-arrow {
+  color: red; /* change to desired color */
+}
+
+
+/* Data cells */
+.mat-data-cell {
+  color: #474D66;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  text-align: center;
+  width: 5%;
+
+  /* padding: 24px; */
+  border-bottom: 1px solid #ddd;
+}
+
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.alert {
+  background-color: #00947E;
+  color: #fff;
+}
+
+.table-container {
+  height: 100%;
+  overflow-x: auto;
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+.mat-chip {
+  padding: 5px;
+  border-radius: 999px;
+}
+
+
+.example-button-row {
+  position: relative;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.example-button-container {
+  margin: 10px;
+}
+
+button[mat-fab] {
+  bottom: 0;
+  right: 0;
+}
+
+.active {
+  background-color: #007bff;
+  color: white;
+}
+
+a.mat-menu-item {
+  color: rgb(26, 26, 26); /* set the default color */
+  text-decoration: none; /* remove the underline */
+}
+a.mat-menu-item:hover {
+  color: rgb(26, 26, 26); /* keep the color black on hover */
+  text-decoration: none; /* remove the underline on hover */
+}

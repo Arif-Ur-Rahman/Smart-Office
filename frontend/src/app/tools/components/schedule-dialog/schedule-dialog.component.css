@@ -1,0 +1,34 @@
+.example-form {
+    min-width: 200px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+.mat-header-cell {
+  color: #474D66;
+  border: 1px solid #ccc;
+  text-align: center;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.mat-data-cell {
+  color: #474D66;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+  text-align: center;
+  width: 5%;
+}
+
+th.mat-header-cell:first-of-type, th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type {
+  padding: 0;
+}
+
+.table-container {
+  max-height: 350px; /* Set the maximum height for the container */
+  overflow-y: auto; /* Enable vertical scrolling */
+}

@@ -1,0 +1,155 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="container-fluid" cdkDropListGroup>
+      <h2 class="alert alert-primary" role="alert" *ngIf="!language_selector"> Project Settings </h2>
+      <h2 class="alert alert-primary" role="alert" *ngIf="language_selector"> プロジェクト設定 </h2>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center" *ngIf="!language_selector">Roles</h2>
+          <h2 class="card-title text-center" *ngIf="language_selector">役割</h2>
+
+          <ul class="list-group" *ngFor="let role of roles; index as i">
+            <li 
+            class="list-group-item item mb-2"
+            [style.background-color]="roleColors[i % roleColors.length]">
+              {{ role.title }} <br>
+              <span class="position-absolute top-0 end-0 mt-2">
+                <mat-icon
+                class="mat-icon"
+                  (click)="openUpdateROleDialog(role._id,i)">
+                  edit
+                </mat-icon>
+                <mat-icon
+                class="mat-icon"
+                  (click)="openRoleDeleteDialog(role._id,i)">
+                  delete
+                </mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px;">
+            <mat-icon
+              matTooltip="Add New Role"
+              matTooltipPosition="above"
+              (click)="openAddROleDialog()">add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center" *ngIf="!language_selector">Priorities</h2>
+          <h2 class="card-title text-center" *ngIf="language_selector">優先順位</h2>
+
+          <ul
+            class="list-group"
+            *ngFor="let priority of priorities; index as i"
+          >
+            <li 
+            class="list-group-item item mb-2"
+            [style.background-color]="roleColors[i % roleColors.length]">
+              {{ priority.title }}
+              <span class="position-absolute top-0 end-0 mt-2">
+                <mat-icon 
+                class="mat-icon"
+                  (click)="openUpdatePriorityDialog(priority._id,i)">edit</mat-icon>
+                <mat-icon 
+                class="mat-icon"
+                  (click)="openPriorityDeleteDialog(priority._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px">
+            <mat-icon 
+              matTooltip="Add New Priority"
+              matTooltipPosition="above"
+            (click)="openAddPriorityDialog()">add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center" *ngIf="!language_selector">Technologies</h2>
+          <h2 class="card-title text-center" *ngIf="language_selector">テクノロジー</h2>
+
+          <ul
+            class="list-group"
+            *ngFor="let technology of technologies; index as i">
+            <li class="list-group-item item mb-2"
+            [style.background-color]="technologyColors[i % technologyColors.length]">
+              {{ technology.title }}
+              <span class="position-absolute top-0 end-0 mt-2">
+                <mat-icon class="mat-icon"
+                  (click)="openUpdateTechDialog(technology._id,i)">edit</mat-icon>
+                <mat-icon class="mat-icon"
+                  (click)="openTechDeleteDialog(technology._id, i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0"
+            style="padding-top: 20px; padding-right: 20px">
+            <mat-icon
+              matTooltip="Add New Technology"
+              matTooltipPosition="above"
+            (click)="openAddTechDialog()">add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center" *ngIf="!language_selector">Dificulty Levels</h2>
+          <h2 class="card-title text-center" *ngIf="language_selector">難易度</h2>
+
+          <ul
+            class="list-group"
+            *ngFor="let dificulty of dificulties; index as i">
+            <li 
+            class="list-group-item item mb-2"
+            [style.background-color]="difficultyColors[i % difficultyColors.length]">
+              {{ dificulty.title }}
+              <span class="position-absolute top-0 end-0 mt-2">
+                <mat-icon class="mat-icon"
+                  (click)="openUpdateDificultyDialog(dificulty._id,i)">edit</mat-icon>
+                <mat-icon class="mat-icon"
+                  (click)="openDificultyDeleteDialog(dificulty._id,i)">delete</mat-icon>
+              </span>
+            </li>
+          </ul>
+
+          <div
+            class="position-absolute top-0 end-0 d-flex"
+            style="padding: 20px">
+            <mat-icon
+              matTooltip="Add New Dificulty Level"
+              matTooltipPosition="above"
+            (click)="openAddDificultyDialog()">add</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer-container">
+  <span class="footer-text">Smart Office &copy; 2023</span>
+</footer>

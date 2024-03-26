@@ -1,0 +1,127 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center"> Project Schedule </h2>
+        </div>
+    </div>
+
+    <h2 class="text-danger text-center" *ngIf="empty_schedule">No task found under this project...</h2>
+
+    <div class="container-fluid" *ngIf="!empty_schedule">
+        <button (click) ="exportexcel()" class="btn btn-success button float-md-right mb-md-2" type="submit" title="Download Schedule">
+            Download Schedule
+        </button>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. update dialog module in project" #input>
+            </mat-form-field>
+        </div>
+
+        <div class="row table-responsive" class="row table-container" style="height: 350px; overflow: auto;">
+            <table id="excel-table" mat-table [dataSource]="scheduleDataSource">
+                <!-- id="excel-table" -->
+                <ng-container matColumnDef="serial" class="col-md-2 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Task Id </th>
+                    <td mat-cell *matCellDef="let element; index as i" class="mat-data-cell" #myHeaderCell> 
+                        {{ i + 1 + (paginator.pageIndex * paginator.pageSize) }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="title" class="col-md-2 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Task Title </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{ element.title ? element.title : 'None' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status" class="col-md-2 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Status </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{ element.state ? element.state : 'None' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="assigned_by" class="col-md-2 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Assigned By </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{ element.assigned_by ? element.assigned_by : 'None' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="assigned_to" class="col-md-2 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Assigned To </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        <ol title="Assigned To">
+                            <li *ngFor="let userId of element.assigned_to">{{ userId }}</li>
+                        </ol>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="start_date" class="col-md-2 col-xl-1 col-xxl-1">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Start Date </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell"> {{element.start_date | date:'short'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="end_date" class="col-md-2 col-xl-1 col-xxl-1">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> End Date </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell"> {{element.end_date | date:'short'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="progress" class="col-md-2 col-xl-2 col-xxl-2">
+                    <th mat-header-cell *matHeaderCellDef class="mat-header-cell"> Progress </th>
+                    <td mat-cell *matCellDef="let element" class="mat-data-cell">
+                        {{ element.progress ? element.progress : 'None' }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action" class="col-md-4 col-xl-3 col-xxl-3">
+                    <th *matHeaderCellDef class="mat-header-cell"> Actions </th>
+                    <td *matCellDef="let element; index as i" class="mat-data-cell">
+                        <div class="more-button">
+                            <button mat-icon-button  [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                        </div>
+                        <mat-menu #menu="matMenu" xPosition="before">
+                            <button type="submit" mat-menu-item>
+                                <span>
+                                    Update Task
+                                </span>
+                            </button>
+                            <button type="submit" mat-menu-item>
+                                <span>
+                                    View Details
+                                </span>
+                            </button>
+                        </mat-menu>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="scheuleDisplayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: scheuleDisplayedColumns;"></tr>
+            </table>
+        </div>
+        <mat-paginator #paginator
+        showFirstLastButtons
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        [pageIndex]="currentPageIndex"
+        (page)="pageEvent = $event"></mat-paginator>
+    </div>
+</div>
+
+<footer class="footer-container">
+    <span class="footer-text">Smart Office &copy; 2023</span>
+</footer>
+
+
+<!-- <div class="example-button-row">
+    <div class="example-flex-container">
+        <div class="example-button-container">
+            <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+                <mat-icon matTooltip="Create new task">add</mat-icon>
+            </button>
+        </div>
+    </div>
+</div> -->

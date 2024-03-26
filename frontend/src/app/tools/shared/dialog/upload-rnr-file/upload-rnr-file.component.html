@@ -1,0 +1,2 @@
+<input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="csvInputChange($event)" accept=".csv"/>
+<button mat-flat-button color="warning" (click)="csvInput.click()">Choose Spreadsheet File (CSV)</button>

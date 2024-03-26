@@ -1,0 +1,178 @@
+<h1 mat-dialog-title>Add New Employee</h1>
+
+
+
+<mat-dialog-content>
+  <form
+    class="example-form"
+    #addEmployeeForm="ngForm"
+    (ngSubmit)="addEmployee(addEmployeeForm.value)"
+    [formGroup]="createEmployeeForm"
+  >
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Employee Name </mat-label>
+      <input
+        matInput
+        formControlName="name"
+        ngModel
+        placeholder="Enter Employee Name"
+      />
+      <mat-error *ngIf="createEmployeeForm.get('name').errors?.['required']">
+        * Employee name is required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Gender</mat-label>
+      <mat-select formControlName="gender" ngModel>
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female"> FeMale</mat-option>
+        <mat-option value="Other">Others</mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="createEmployeeForm.get('gender').errors?.['required']">
+        * Gender Selection is Required!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Joining Date </mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        formControlName="joining_date"
+        ngModel
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      <mat-error *ngIf="createEmployeeForm.get('name').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Employee ID</mat-label>
+      <input
+        matInput formControlName="emp_id" ngModel placeholder="Enter Employee ID" pattern="^[a-zA-Z_][0-9a-zA-Z_]*$"/>
+      <mat-error *ngIf="createEmployeeForm.get('emp_id').errors?.['required']">
+        *Must Contain Letter with number!
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" ngModel placeholder="Enter Email" />
+      <mat-error *ngIf="createEmployeeForm.get('email').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill"> <mat-label>Password</mat-label>
+      <input
+        matInput
+        formControlName="password"
+        ngModel
+        placeholder="Enter Password"
+        type="password"
+      />
+      <mat-error *ngIf="createEmployeeForm.get('password').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="pass_error" class="text-danger">
+      * Password and Confirm Password is not Same !
+    </div>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Contact Number</mat-label>
+      <input
+        matInput
+        formControlName="contactNumber"
+        ngModel
+        placeholder="Enter Contact Number"
+      />
+      <mat-error *ngIf="createEmployeeForm.get('contactNumber').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        formControlName="address"
+        ngModel
+        placeholder="Enter Address"
+      />
+      <mat-error *ngIf="createEmployeeForm.get('address').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Department</mat-label>
+      <mat-select formControlName="department_name" ngModel>
+        <mat-option value="sales">Sales Department</mat-option>
+        <mat-option value="engineering"> Engineering Department</mat-option>
+        <mat-option value="hr">HR Department</mat-option>
+        <mat-option value="other">Others</mat-option>
+      </mat-select>
+      <mat-error *ngIf="createEmployeeForm.get('department_name').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Designation</mat-label>
+      <mat-select formControlName="designation" ngModel>
+        <mat-option value="trainee">Trainee Engineer</mat-option>
+        <mat-option value="software_engineer"> Software Engineer</mat-option>
+        <mat-option value="leader">Leader</mat-option>
+        <mat-option value="manager">Manager</mat-option>
+        <mat-option value="cto">CTO</mat-option>
+        <mat-option value="other">Others</mat-option>
+      </mat-select>
+      <mat-error *ngIf="createEmployeeForm.get('designation').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        formControlName="description"
+        ngModel
+        placeholder="Enter Description"
+      />
+      <mat-error *ngIf="createEmployeeForm.get('description').errors?.['required']">
+        * required !
+      </mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions align="end">
+      <button mat-button [mat-dialog-close]="true">Cancel</button>
+      <button mat-button type="submit" cdkFocusInitial>Submit</button>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<!-- <mat-dialog-content>
+  <form class="example-form" #addEmployeeForm="ngForm" (ngSubmit)="addEmployee(addEmployeeForm.value)" [formGroup]="createEmployeeForm">
+    
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Employee Name </mat-label>
+      <input matInput formControlName="name" ngModel placeholder="Enter Employee Name" />
+      <mat-error *ngIf="createEmployeeForm.get('name').errors?.['required']">
+          * Employee name is required !
+      </mat-error>
+    </mat-form-field>
+
+    <mat-dialog-actions align="end">
+      <button mat-button [mat-dialog-close]="true">Cancel</button>
+      <button mat-button type="submit" cdkFocusInitial>Submit</button>
+  </mat-dialog-actions>
+  </form>
+</mat-dialog-content> -->

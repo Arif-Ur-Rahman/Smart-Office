@@ -1,0 +1,72 @@
+<div>
+    <h1 mat-dialog-title>Update Project</h1>
+    <div mat-dialog-content>
+        <form class="example-form" #addProjectForm="ngForm" (ngSubmit)="updateProject(addProjectForm.value)">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Title</mat-label>
+                <input matInput name="project_title" [(ngModel)]="project.title" placeholder="Enter project title here" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Version</mat-label>
+                <input matInput name="version" [(ngModel)]="project.version_number" placeholder="Ex. 1.0.0, 2.1.1"/>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Git link</mat-label>
+                <input matInput name="git_link" [(ngModel)]="project.git_link" placeholder="Enter git link here"
+                [formControl]="gitLinkFormControl" />
+
+                <mat-error *ngIf="gitLinkFormControl.hasError('pattern')">Invalid URL format</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="picker1" name="start_date" [(ngModel)]="project.start_date" placeholder="Enter project end date here">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>End Date</mat-label>
+                <input matInput [matDatepicker]="picker2" name="end_date" [(ngModel)]="project.end_date" placeholder="Enter project start date here">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Progress</mat-label>
+                <input matInput name="progress_percentage" [(ngModel)]="project.progress_percentage.$numberDecimal" placeholder="Enter project percentage here"/>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Technology</mat-label>
+                <input matInput name="technology" [(ngModel)]="project.technologies" placeholder="Ex. react, vue, php" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Priority</mat-label>
+                <input matInput name="priority" [(ngModel)]="project.priority" placeholder="Enter priority here" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Project Status</mat-label>
+                <input matInput name="project_status" [(ngModel)]="project.states" placeholder="Enter status here" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" class="example-full-width" appearance="fill">
+                <mat-label>Summary</mat-label>
+                <textarea matInput name="summary" ngModel placeholder="Enter project summary here"></textarea>
+            </mat-form-field>
+
+            <div mat-dialog-actions align="end">
+                <button type="button" mat-button [mat-dialog-close]="true">Close</button>
+                <button mat-button type="submit" [mat-dialog-close]="true" cdkFocusInitial>Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

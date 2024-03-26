@@ -1,0 +1,10 @@
+.fab-btn-position {
+  position: fixed;
+  right: 5rem;
+  bottom: 5rem;
+  z-index: 10000;
+}
+.fab-btn-design {
+  background-color: #4d96ff;
+  color: #fff;
+}

@@ -1,0 +1,104 @@
+<div class="container">
+  <h2>Update Employee</h2>
+  <mat-dialog-content>
+    <!-- <form class="example-form" [formGroup]="updateEmpForm"> -->
+      <form class="example-form" #addEmployeeForm="ngForm" (ngSubmit)="updateEmployeeDialog(addEmployeeForm.value)">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Employee Name </mat-label>
+        <input
+          matInput name="name" [(ngModel)]="employee.name" placeholder="Enter name here"
+        />
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select matInput name="gender" [(ngModel)]="employee.gender" placeholder="Enter gender here">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female"> FeMale</mat-option>
+          <mat-option value="Other">Others</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Department</mat-label>
+        <mat-select matInput name="department_name" [(ngModel)]="employee.department_name">
+          <mat-option value="sales">Sales Department</mat-option>
+          <mat-option value="engineering">Engineering Department</mat-option>
+          <mat-option value="hr">HR Department</mat-option>
+          <mat-option value="other">Others</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Joining Date </mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker1"
+          matInput name="joining_date"
+          [(ngModel)]="employee.joining_date" placeholder="{{employee.joining_date}}"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Employee ID</mat-label>
+        <input
+          matInput matInput name="employee_id_no" [(ngModel)]="employee.employee_id_no" placeholder="Please Enter Employee ID" />
+          <!-- pattern="^[a-zA-Z_][0-9a-zA-Z_]*$" -->
+          
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput matInput name="email" [(ngModel)]="employee.email" placeholder="Please Enter Employee Email" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Contact Number</mat-label>
+        <input
+          matInput
+          matInput name="contactNumber"
+          [(ngModel)]="employee.contact_number" placeholder="Please Enter Contact" />
+          <!-- pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$" -->
+        
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Address</mat-label>
+        <input
+          matInput
+          matInput name="address"
+          [(ngModel)]="employee.address" placeholder="Please Enter Address"
+        />
+      </mat-form-field>
+
+      
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Designation</mat-label>
+        <mat-select matInput name="designation" [(ngModel)]="employee.designation">
+          <mat-option value="trainee">Trainee Engineer</mat-option>
+          <mat-option value="software_engineer"> Software Engineer</mat-option>
+          <mat-option value="leader">Leader</mat-option>
+          <mat-option value="manager">Manager</mat-option>
+          <mat-option value="cto">CTO</mat-option>
+          <mat-option value="other">Others</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Description</mat-label>
+        <input
+          matInput name="description"
+          [(ngModel)]="employee.description" placeholder="Description"
+        />
+      </mat-form-field>
+
+      <div mat-dialog-actions align="end">
+        <button type="button" mat-button [mat-dialog-close]="true">Cancel</button>
+        <button mat-button type="submit" [mat-dialog-close]="true" cdkFocusInitial>Update</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,21 @@
+<div class="employee-profile">
+    <div class="profile-header">
+      <img src="{{employee.imageURL}}" onerror="this.src='../../../../../assets/employees/nophoto.png';" alt="Employee Profile Picture">
+      <h1><b>{{employee.name}}</b></h1>
+      <h1>{{employee.designation}}</h1>
+    </div>
+    <div class="profile-details">
+      <h1><b>Details</b></h1>
+      <ul>
+        <li><strong>Department:</strong> {{employee.department_name}}</li>
+        <li><strong>Email:</strong> {{employee.email}}</li>
+        <li><strong>Phone:</strong> {{employee.contact_number}}</li>
+        <li><strong>Address:</strong> {{employee.address}}</li>
+        <li><strong>Employee ID:</strong> {{employee.employee_id_no}}</li>
+        <li><strong>Joining Date:</strong> {{employee.joining_date}}</li>
+        <li><strong>Gender:</strong> {{employee.gender}}</li>
+        <li><strong>Description:</strong> {{employee.description}}</li>
+      </ul>
+    </div>
+  </div>
+  

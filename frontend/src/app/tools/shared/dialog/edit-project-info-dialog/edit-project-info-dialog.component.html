@@ -1,0 +1,97 @@
+<div>
+    <h1 mat-dialog-title>Edit Project Info</h1>
+        <mat-dialog-content>
+            <form class="example-form" [formGroup]="form">
+                <mat-form-field class="example-full-width mb-2" appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <input [(ngModel)]="project.title" type="text" placeholder="Write a short title ex: smart office" matInput formControlName="title"
+                    pattern="[a-zA-Z\s]+"
+                    maxlength="25">
+                    <mat-error *ngIf="title.errors?.['pattern']">Please enter text only</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width mb-2" appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea [(ngModel)]="project.description" type="text" placeholder="Write a short description within 200 words" matInput formControlName="description" 
+                    maxlength="200"
+                    ></textarea>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width mb-2" appearance="outline">
+                    <mat-label>Version Number</mat-label>
+                    <input [(ngModel)]="project.version_number" placeholder="Give project version number" matInput formControlName="version_number"
+                    pattern="^\d+(\.\d+){2}$" maxlength="11">
+                    <mat-error *ngIf="version_number.errors?.['pattern']">Please enter numbers only</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width mb-2" appearance="outline">
+                    <mat-label>Git Link</mat-label>
+                    <input [(ngModel)]="project.git_link" type="url" placeholder="Enter git link ex: https://github.com/project" matInput
+                    formControlName="git_link"
+                    pattern="^(ftp|http|https):\/\/[a-zA-Z0-9]+([\-\.]{1}[a-zA-Z0-9]+)*\.[a-zA-Z]{2,5}(([0-9]{1,5})?\/.*)?$"
+                    maxlength="100">
+                    <mat-error *ngIf="git_link.errors?.['pattern']">Please enter url only</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="m-2" appearance="outline">
+                    <mat-label>Start Date</mat-label>
+                    <input [(ngModel)]="project.start_date" placeholder="Start Date" matInput [matDatepicker]="startDatePicker" formControlName="start_date">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>End Date</mat-label>
+                    <input [(ngModel)]="project.end_date" placeholder="End Date" matInput [matDatepicker]="endDatePicker" formControlName="end_date">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Progress Percentage</mat-label>
+                    <input [(ngModel)]="project.progress_percentage.$numberDecimal" placeholder="Enter number from 0 to 100" matInput formControlName="progress_percentage"
+                    pattern="^(100|[1-9]?[0-9])$" maxlength="3">
+                    <mat-error *ngIf="progress_percentage.errors?.['pattern']">Please enter a number only</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Technology</mat-label>
+                    <mat-select [(ngModel)]="project.technologies" placeholder="Select technology used in project" formControlName="technologies" multiple>
+                        <mat-option value="React">React</mat-option>
+                        <mat-option value="Angular">Angular</mat-option>
+                        <mat-option value="Vue">Vue</mat-option>
+                        <mat-option value="Php">Php</mat-option>
+                        <mat-option value="Mysql">Mysql</mat-option>
+                        <mat-option value="Mongo">Mongo</mat-option>
+                        <mat-option value="C++">C++</mat-option>
+                        <mat-option value="C#">C#</mat-option>
+                        <mat-option value="Flutter">Flutter</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select [(ngModel)]="project.status" placeholder="Select project current status" formControlName="status">
+                        <mat-option value="Running">Running</mat-option>
+                        <mat-option value="Cancel">Cancel</mat-option>
+                        <mat-option value="On-Hold">On-Hold</mat-option>
+                        <mat-option value="Complete">Complete</mat-option>
+                    </mat-select>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Priority</mat-label>
+                    <mat-select [(ngModel)]="project.priority" placeholder="Select project priority" formControlName="priority">
+                        <mat-option value="High">High</mat-option>
+                        <mat-option value="Medium">Medium</mat-option>
+                        <mat-option value="Low">Low</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </mat-dialog-content>
+    
+        <mat-dialog-actions align="end">
+            <button type="button" mat-button mat-dialog-close>Cancel</button>
+            <button [disabled]="!form.valid" type="button" mat-button cdkFocusInitial (click) ="updateProject()">Submit</button>
+        </mat-dialog-actions>
+    </div>

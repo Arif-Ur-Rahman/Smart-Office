@@ -1,0 +1,59 @@
+<div>
+    <h1 mat-dialog-title>Update Task</h1>
+    <form class="example-form" [formGroup]="updateTaskForm">
+        <mat-dialog-content>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="{{task.title}}" formControlName="task_title" ngModel/>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Description</mat-label> 
+                <textarea matInput formControlName="description" ngModel placeholder="{{task.description}}"></textarea>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Start Date</mat-label>
+                <input matInput placeholder="Start Date"  [matDatepicker]="picker1" formControlName="start_date" ngModel>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>End Date</mat-label>
+                <input matInput placeholder="End Date" [matDatepicker]="picker2" formControlName="end_date" ngModel>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field> 
+
+           
+
+            <!-- <span class="badge bg-light text-dark" >Assigned Members : <span *ngFor="let member of tasks[index].assigned_to"> {{member.employee.name}} ; </span>  </span> -->
+
+            <!-- <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Assign Members</mat-label>
+                <mat-select formControlName="assign_member" ngModel multiple>
+                    <mat-option *ngFor="let member of members" [value]="member._id">
+                        <ng-template [ngIf]="member.employee" [ngIfElse]="loading">
+                            {{member.employee.name}}
+                        </ng-template>
+        
+                        <ng-template #loading>
+                            
+                        </ng-template>
+                    
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+        </mat-dialog-content>
+
+        <mat-dialog-actions align="end">
+            <button mat-button mat-dialog-close> Cancel </button>
+            <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="update_Task()">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+

@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="loginForm">
+        <h2 class="text-center">Login</h2>
+        <form class="example-form">
+
+            <mat-dialog-content class="mat-typography">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Username </mat-label>
+                    <input matInput placeholder="Enter Your Username" [formControl]="emailFormControl">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        * Email is required !
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Password </mat-label>
+                <input matInput [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Enter Your Password" [formControl]="passwordFormControl">
+
+                <button mat-icon-button matSuffix (click)="showPassword = !showPassword">
+                    <mat-icon>{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                
+                <mat-error *ngIf="passwordFormControl.hasError('required')">
+                    * password is required !
+                </mat-error>
+                </mat-form-field>
+
+                <p class="text-danger" *ngIf="login_error"> * {{ error_message }}</p>
+
+                <a href="/forgot-password" style="text-decoration: none;"> Forgotten password ?</a>
+
+            </mat-dialog-content>
+
+
+                
+
+            <mat-dialog-actions align="end">
+                <!-- <button mat-flat-button color="warn" mat-dialog-close class="m-3">Cancel</button> -->
+                <button mat-flat-button color="primary" (click)="login()">Submit</button>
+            </mat-dialog-actions>
+        </form>
+    </div>
+</div>

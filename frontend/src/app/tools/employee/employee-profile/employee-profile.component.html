@@ -1,0 +1,113 @@
+<div class="container-fluid" *ngIf="language_selector">
+
+    <div class="row">
+        <div class="col-4">
+            <div class="wrapper">
+              <img src="{{ employee_profile.image }}" style="height: 100%; width: 100%;" alt="No Profile Provided. Sorry for that.">
+            </div>
+        </div>
+        <div class="col-6">
+            <h1>
+                <b> {{ employee_profile.name }} </b>
+            </h1>
+            <h2>{{ employee_profile.designation.title }}</h2>
+            <p>
+                {{ employee_profile.description }}
+            </p>
+            <span *ngIf="admin">
+              <button  mat-raised-button color="primary" (click) = updateEmployee(employee_profile._id)>編集</button>
+              <button mat-raised-button color="warn" style="margin-left: 10px" (click) = deleteEmployee(employee_profile._id)>消去</button>
+            </span>
+            
+        </div> 
+        <div class="col-2 mt-3" *ngIf="admin">
+          <!-- <button mat-raised-button color="accent"> Mark as Admin</button> -->
+          <div *ngIf="emp_admin; else elseBlock"> <button mat-raised-button color="accent" (click) = roleChange(employee_profile._id)> 一般としてマーク</button> </div>
+          <ng-template #elseBlock> <button mat-raised-button color="accent" (click) = roleChange(employee_profile._id)> 管理者としてマーク </button> </ng-template>
+  
+          <span class="badge rounded-pill bg-danger mt-3" *ngIf="role_change_error"> * 自分のアクセス権を変更することはできません. </span>
+        </div>      
+    </div>
+
+    <div class="underline"></div>
+
+    <div class="row" style="margin: 0px 8px">
+        <div class="col-6 personal_info">
+          <h2>Personal Info :</h2>
+          <h3>名前 : {{ employee_profile.name }}</h3>
+          <h3>Eメール : {{ employee_profile.email }}</h3>
+          <h3>性別 : {{ employee_profile.gender }}</h3>
+          <h3>入社日 : {{ pipe.transform(employee_profile.joining_date) }}</h3>
+          <h3>モバイル : {{ employee_profile.contact_number }}</h3>
+          <h3>住所 : {{ employee_profile.address }}</h3>
+            <!-- <h3>Hobbies: Playing Fighting Games, Watching Anime,</h3> -->
+        </div>
+        <div class="col-6 project">
+          <h2>Projects :</h2>
+          <ul>
+              <li *ngFor="let project of projects; index as i;">
+                {{project.title}}
+              </li>
+        
+      </ul>
+    </div>
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="!language_selector">
+
+  <div class="row">
+      <div class="col-4">
+          <div class="wrapper">
+            <img src="{{ employee_profile.image }}" style="height: 100%; width: 100%;" alt="No Profile Provided. Sorry for that.">
+          </div>
+      </div>
+
+      <div class="col-6">
+          <h1>
+              <b> {{ employee_profile.name }} </b>
+          </h1>
+          <h2>{{ employee_profile.designation.title }}</h2>
+          <p>
+              {{ employee_profile.description }}
+          </p>
+          <span *ngIf="admin">
+            <button  mat-raised-button color="primary" (click) = updateEmployee(employee_profile._id)>Edit</button>
+            <button mat-raised-button color="warn" style="margin-left: 10px" (click) = deleteEmployee(employee_profile._id)>Delete</button>
+          </span>
+          
+      </div>
+
+      <div class="col-2 mt-3" *ngIf="admin">
+        <!-- <button mat-raised-button color="accent"> Mark as Admin</button> -->
+        <div *ngIf="emp_admin; else elseBlock"> <button mat-raised-button color="accent" (click) = roleChange(employee_profile._id)> Mark as General</button> </div>
+        <ng-template #elseBlock> <button mat-raised-button color="accent" (click) = roleChange(employee_profile._id)> Mark as Admin </button> </ng-template>
+
+        <span class="badge rounded-pill bg-danger mt-3" *ngIf="role_change_error"> * You cann't change your own access. </span>
+      </div>
+  </div>
+
+  <div class="underline"></div>
+
+  <div class="row" style="margin: 0px 8px">
+      <div class="col-6 personal_info">
+          <h2>Personal Info :</h2>
+          <h3>Name : {{ employee_profile.name }}</h3>
+          <h3>Email : {{ employee_profile.email }}</h3>
+          <h3>Gender : {{ employee_profile.gender }}</h3>
+          <h3>Joining Date : {{ pipe.transform(employee_profile.joining_date) }}</h3>
+          <h3>Mobile : {{ employee_profile.contact_number }}</h3>
+          <h3>Addresss : {{ employee_profile.address }}</h3>
+          <!-- <h3>Hobbies: Playing Fighting Games, Watching Anime,</h3> -->
+      </div>
+      <div class="col-6 project">
+          <h2>Projects :</h2>
+          <ul>
+              <li *ngFor="let project of projects; index as i;">
+                {{project.title}}
+              </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>

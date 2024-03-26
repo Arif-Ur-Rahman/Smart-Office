@@ -1,0 +1,12 @@
+<h2 mat-dialog-title *ngIf="language_selector"> 本当に削除しますか?</h2>
+<h2 mat-dialog-title *ngIf="! language_selector"> Are you sure to delete ?</h2>
+
+<div mat-dialog-actions align="end" *ngIf="language_selector">
+    <button mat-button [mat-dialog-close]="true">キャンセル</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click) = "delete()">消去</button>
+</div>
+
+<div mat-dialog-actions align="end" *ngIf="! language_selector">
+    <button mat-button [mat-dialog-close]="true">Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click) = "delete()">Delete</button>
+</div>
